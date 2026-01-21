@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>シナリオタイトル</title>
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/deco.css">
+<link rel="stylesheet" href="assets/css/parts.css">
+<script src="assets/js/parts.js"></script>
+</head>
+<body oncopy="rubyToggle()">
+
+<header>
+<h1 class="title">シナリオタイトル</h1>
+<p>冒頭記述用。<br>トレーラーなどがあればここに記載するとよいかもしれません。</p>
+</header>
+
+<main class="layout-2col">
+
+<nav class="mokuji" id="mokuji">
+  <button class="mokuji-hamburger" onclick="toggleMokuji()">☰</button>
+  
+<!-- コピペ時ふりがなON/OFFパーツ：ここから -->
+<div class="toggle_button">
+<input id="toggle" class="toggle_input" type="checkbox">
+<label for="toggle" class="toggle_label"><span></span></label>
+</div>
+<!-- コピペ時ふりがなON/OFFパーツ：ここまで -->
+  <ul class="mokuji-list">
+  
+<li class="mokuji-item mokuji-node lv1">
+  <div class="mokuji-row">
+    <button class="mokuji-toggle"></button>
+    <a href="#1">PL情報</a>
+  </div>
+  <ul>
+    
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#1-1">シナリオ概要</a>
+  </div>
+</li>
+  </ul>
+</li>
+<li class="mokuji-item mokuji-node lv1">
+  <div class="mokuji-row">
+    <button class="mokuji-toggle"></button>
+    <a href="#2">これは何？</a>
+  </div>
+  <ul>
+    
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-1">テキスト表示例</a>
+  </div>
+</li>
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-2">リスト/リンク</a>
+  </div>
+</li>
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-3">画像</a>
+  </div>
+</li>
+<li class="mokuji-item mokuji-node lv2">
+  <div class="mokuji-row">
+    <button class="mokuji-toggle"></button>
+    <a href="#2-4">装飾BOX系/テーブル</a>
+  </div>
+  <ul>
+    
+<li class="mokuji-item lv3">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-4-1">装飾BOX</a>
+  </div>
+</li>
+<li class="mokuji-item lv3">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-4-2">ワンクリックコピペ装飾BOX</a>
+  </div>
+</li>
+<li class="mokuji-item lv3">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-4-3">折り畳みBOX</a>
+  </div>
+</li>
+  </ul>
+</li>
+<li class="mokuji-item mokuji-node lv2">
+  <div class="mokuji-row">
+    <button class="mokuji-toggle"></button>
+    <a href="#2-5">装飾カード/テーブル</a>
+  </div>
+  <ul>
+    
+<li class="mokuji-item lv3">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-5-1">装飾カード</a>
+  </div>
+</li>
+<li class="mokuji-item lv3">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-5-2">テーブル</a>
+  </div>
+</li>
+  </ul>
+</li>
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-6">見出し</a>
+  </div>
+</li>
+  </ul>
+</li>
+<li class="mokuji-item mokuji-node lv1">
+  <div class="mokuji-row">
+    <button class="mokuji-toggle"></button>
+    <a href="#3">見出し1</a>
+  </div>
+  <ul>
+    
+<li class="mokuji-item mokuji-node lv2">
+  <div class="mokuji-row">
+    <button class="mokuji-toggle"></button>
+    <a href="#3-1">見出し2</a>
+  </div>
+  <ul>
+    
+<li class="mokuji-item lv3">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#3-1-1">見出し3</a>
+  </div>
+</li>
+  </ul>
+</li>
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#3-2">おまけ</a>
+  </div>
+</li>
+  </ul>
+</li>
+<li class="mokuji-item mokuji-node lv1">
+  <div class="mokuji-row">
+    <button class="mokuji-toggle"></button>
+    <a href="#4">利用規約</a>
+  </div>
+  <ul>
+    
+<li class="mokuji-item mokuji-node lv2">
+  <div class="mokuji-row">
+    <button class="mokuji-toggle"></button>
+    <a href="#4-1">禁止事項/許可事項</a>
+  </div>
+  <ul>
+    
+<li class="mokuji-item lv3">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#4-1-1">NG 禁止事項</a>
+  </div>
+</li>
+<li class="mokuji-item lv3">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#4-1-2">OK 許可していること</a>
+  </div>
+</li>
+  </ul>
+</li>
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#4-2">"Template by Jaxson"の削除について</a>
+  </div>
+</li>
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#4-3">HTMLファイルDL後の使い方</a>
+  </div>
+</li>
+  </ul>
+</li>
+  </ul>
+</nav>
+<article class="content">
+
+<h1 id="1">PL情報</h1>
+<br>
+<div class="info-box box4" >
+<div class="box-title">情報</div>
+<div class="box-body">
+
+<div class="info-item">
+  <div class="info-label">プレイ人数</div>
+  <div class="info-value"><span>2〜4人</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label">プレイ時間</div>
+  <div class="info-value"><span>3時間程度</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label">傾向</div>
+  <div class="info-value"><span>現代日本舞台、島クローズド</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label">推奨技能</div>
+  <div class="info-value"><span>〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉</span></div>
+</div>
+</div></div>
+<br>
+<h2 id="1-1">シナリオ概要</h2>
+<p>{PC苗字}{PC名前}の自宅に届いた招待状。<br>それは、知人のフルート奏者の誕生パーティー開催を知らせるものだった。<br>そうして{NPC苗字}{NPC名前}とともに訪れた孤島の洋館は、台風の来訪で外界と閉ざされることとなる。</p>
+<br>
+<p>探偵、隠し財産の噂に、島に伝わるわらべ歌。<br>何も起きないはずもなく。<br>果たして、聴こえた不気味なフルートの音色が<ruby>誘<rt>いざな</rt></ruby>う先は……。</p>
+<br>
+<p>という感じで使えます。</p>
+<br>
+<br>
+<h1 id="2">これは何？</h1>
+<p>これはシナリオHTMLのテンプレート、及び、テキストをもとにHTMLを生成してくれる補助ツールです。<br>よろしければご活用ください。<br>システムはクトゥルフ神話TRPGを想定していますが、用語などを変更いただくことで他のシステムのシナリオにも使用できます。</p>
+<br>
+<p>以下のサンプルサイトで挙動をご確認いただけます。<br>テンプレート：　<a href="https://jxsnwk.github.io/templates_002/" target="_blank">https://jxsnwk.github.io/templates_002/</a><br>HTML生成ツール：　<a href="https://jxsnwk.github.io/templates_002/generator.html" target="_blank">https://jxsnwk.github.io/templates_002/generator.html</a></p>
+<br>
+<p>利用規約の詳細は<a href="#4" >こちらをご覧ください</a>。</p>
+<br>
+<br>
+<br>
+<br>
+<h2 id="2-1">テキスト表示例</h2>
+<p>本文はこのように表示されます。<br>その他装飾は以下の通りです。</p>
+<br>
+<p><strong>太字</strong>　<span class="underline">下線</span>　<ruby>漢字<rt>ふりがな</rt></ruby></p>
+<br>
+<div class="left">
+左寄せ<br>
+</div>
+<div class="left">左寄せ</div>
+<div class="center">
+中央寄せ<br>
+</div>
+<div class="center">中央寄せ</div>
+<div class="right">右寄せ</div>
+<div class="right">
+右寄せ<br>
+</div>
+<div class="small">
+小さな文字<br>
+</div>
+<div class="small">小さな文字</div>
+<br>
+<p>脚注<sup class="footnote-ref" id="footnote-ref-1" data-label="1st" data-txt="脚注定義に書いた、ID対応する脚注が表示されます。">[1]</sup><br>脚注の数字は自動で採番されます。オンマウス<sup class="footnote-ref" id="footnote-ref-2" data-label="2nd" data-txt="ある程度長々書くと表示時に改行されます。本文本文本文本文本文本文本文本文本文本文。本文本文。">[2]</sup>で脚注が表示されます。</p>
+<br>
+<p>脚注定義は次のように書きます/表示されます。</p>
+<a href="#footnote-ref-1" id="footnote1" class="footnote-def">[1]</a>： 脚注定義に書いた、ID対応する脚注が表示されます。<br>
+<a href="#footnote-ref-2" id="footnote2" class="footnote-def">[2]</a>： ある程度長々書くと表示時に改行されます。本文本文本文本文本文本文本文本文本文本文。本文本文。<br>
+<br>
+<br>
+<br>
+<br>
+<h2 id="2-2">リスト/リンク</h2>
+
+<ul class="list level-1">
+
+<li>
+リスト
+
+</li>
+
+<li>
+リスト
+
+<ul class="list level-2">
+
+<li>
+リスト
+
+</li>
+
+</ul>
+</li>
+
+<li>
+リスト
+
+</li>
+
+</ul>
+<br>
+
+<ul class="checkbox level-1">
+
+<li>
+<input type="checkbox" > チェックリスト
+
+</li>
+
+<li>
+<input type="checkbox" > チェックリスト
+
+</li>
+
+<li>
+<input type="checkbox" checked> チェックリスト
+
+</li>
+
+</ul>
+<br>
+<br>
+<p>アンカーの設置はこんなかんじ<span id="anchor-id"></span>で書きます。</p>
+<br>
+<p><a href="https://" target="_blank">URLリンク</a><br>別窓で開きます。</p>
+<br>
+<p><a href="#anchor-id" >アンカーリンク</a><br>いわゆるページ内遷移のリンクです。「#」始まりかどうかで判断しています。</p>
+<br>
+<br>
+<h2 id="2-3">画像</h2>
+<p>こんな感じで表示できます。<br>画像ファイルはassets/img下に配置した上で、ファイル名を指定して使用します。<br><img class="sc-img" src="assets/img/sample.png" alt="サンプル画像名"></p>
+<br>
+<br>
+<br>
+<br>
+<h2 id="2-4">装飾BOX系/テーブル</h2>
+<h3 id="2-4-1">装飾BOX</h3>
+<div class="deco-box box1" >
+<div class="box-title">装飾BOX1 見出し</div>
+<div class="box-body">
+装飾BOX1 本文<br>
+本文本文本文本文<br>
+</div></div>
+<br>
+<div class="deco-box box1" >
+
+<div class="box-body">
+見出しに記述がない場合、見出しなしの装飾BOXができます。<br>
+</div></div>
+<br>
+<div class="deco-box box2" >
+<div class="box-title">装飾BOX2 見出し</div>
+<div class="box-body">
+装飾BOX2 本文<br>
+</div></div>
+<br>
+<div class="deco-box box3" >
+<div class="box-title">装飾BOX3 見出し</div>
+<div class="box-body">
+装飾BOX3 本文<br>
+</div></div>
+<br>
+<br>
+<h3 id="2-4-2">ワンクリックコピペ装飾BOX</h3>
+<div class="copy-box box1" data-copy onclick="copyBox(this)">
+<div class="box-title">ワンクリックコピペができる装飾BOX 見出し</div>
+<div class="box-body">
+ワンクリックコピペができる装飾ボックス 本文<br>
+本文本文本文本文<br>
+<ruby>本文本文<rt>ほんぶんほんぶん</rt></ruby>本文本文<br>
+</div></div>
+<br>
+<div class="copy-box box1" data-copy onclick="copyBox(this)">
+
+<div class="box-body">
+見出しに記述がない場合、見出しなしの装飾BOXができます。<br>
+</div></div>
+<br>
+<br>
+<h3 id="2-4-3">折り畳みBOX</h3>
+<details class="fold-box box1">
+<summary class="fold-summary box-title">折り畳みBOX 見出し</summary>
+<div class="box-body">
+折り畳みBOX 本文<br>
+本文本文本文本文<br>
+</div></details>
+<br>
+<br>
+<br>
+<h2 id="2-5">装飾カード/テーブル</h2>
+<h3 id="2-5-1">装飾カード</h3>
+<p>「ラベル: 値」で各項目を記述できます。</p>
+<br>
+<div class="info-box box4" >
+<div class="box-title">シナリオ概要</div>
+<div class="box-body">
+
+<div class="info-item">
+  <div class="info-label">プレイ人数</div>
+  <div class="info-value"><span>2〜4人</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label">プレイ時間</div>
+  <div class="info-value"><span>3時間程度</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label">傾向</div>
+  <div class="info-value"><span>現代日本舞台、島クローズド</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label">推奨技能</div>
+  <div class="info-value"><span>〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉</span></div>
+</div>
+</div></div>
+<br>
+<br>
+<br>
+<h3 id="2-5-2">テーブル</h3>
+<p>ヘッダー行は末尾に「h」、セル強調は冒頭に「~」をつけることで装飾できます。</p>
+<br>
+<table class="sc-table"><thead><tr><th>ヘッダー</th><th>ヘッダー</th><th>ヘッダー</th></tr></thead><tbody>
+<tr><td>セル</td><td>セル</td><td>セル</td></tr>
+<tr><td class="em">セル強調</td><td>セル</td><td>セル</td></tr>
+<tr><td>セル</td><td>セル</td><td>セル</td></tr>
+<tr><td>セル</td><td>セル</td><td>セル</td></tr></tbody></table>
+<br>
+<br>
+<br>
+<br>
+<h2 id="2-6">見出し</h2>
+<p>見出しは以下のように装飾されます。</p>
+<br>
+<h1 id="3">見出し1</h1>
+<h2 id="3-1">見出し2</h2>
+<h3 id="3-1-1">見出し3</h3>
+<h4 id="3-1-1-1">見出し4</h4>
+<h5 id="3-1-1-1-1">見出し5</h5>
+<br>
+<p>見出しから自動で目次を生成することができます。<br>目次作成時、どこまで階層を記述するかはプルダウン選択で設定します。</p>
+<br>
+<br>
+<br>
+<br>
+<h2 id="3-2">おまけ</h2>
+<p>クトゥルフ神話TRPGシナリオ用の権利表示タグ<br><!-- ライセンス表示パーツ：ここから -->
+    <div class="licence"></div>
+    <!-- ライセンス表示パーツ：ここまで --></p>
+<br>
+<br>
+<br>
+<br>
+<h1 id="4">利用規約</h1>
+<p>これはTRPGのシナリオ配布用HTML形式テンプレート及びHTML生成ツールです。<br>クトゥルフ神話TRPGシナリオでの使用を想定していますが、用語等を変更することで他のシステムにもご利用いただけます。<br>それ以外の用途にも、以下「NG 禁止事項」に反しない限り、ご利用いただけます。</p>
+<br>
+<p>本テンプレートは、HTML形式のシナリオ配布がもっとお気軽にできるようになるといいなあ、の考えのもと作られています。<br>プログラム知識の少ない人間の作った拙いものですので、色々とお目こぼしいただけますと幸いです。</p>
+<br>
+<p>以下のサンプルサイトで挙動をご確認いただけます。<br>テンプレート：　<a href="https://jxsnwk.github.io/templates_002/" target="_blank">https://jxsnwk.github.io/templates_002/</a><br>HTML生成ツール：　<a href="https://jxsnwk.github.io/templates_002/generator.html" target="_blank">https://jxsnwk.github.io/templates_002/generator.html</a></p>
+<br>
+<br>
+<p>質問や不明点は X(旧Twitter)：<a href="https://x.com/Jxsn_wk" target="_blank">@Jxsn_wk</a> までお問い合わせください。</p>
+<br>
+<br>
+<br>
+<h2 id="4-1">禁止事項/許可事項</h2>
+<h3 id="4-1-1">NG 禁止事項</h3>
+<div class="deco-box box1" >
+
+<div class="box-body">
+
+<ul class="list level-1">
+
+<li>
+本テンプレート及びツールの自作発言
+
+</li>
+
+<li>
+配布ファイルそのままの形での公開及び配布（無償/有償問わず）
+
+</li>
+
+<li>
+法律に違反することに関連した利用
+
+</li>
+
+</ul>
+</div></div>
+<br>
+<br>
+<h3 id="4-1-2">OK 許可していること</h3>
+<div class="deco-box box1" >
+
+<div class="box-body">
+<strong>購入不要、無料利用可能</strong><br>
+
+<ul class="list level-1">
+
+<li>
+本配布物を利用した【シナリオ】の公開及び配布
+
+<ul class="list level-2">
+
+<li>
+無償/有償問わず
+
+</li>
+
+<li>
+改変した場合を含む
+
+</li>
+
+<li>
+既存のHTMLファイルに一部利用した場合を含む
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</div></div>
+<br>
+<div class="deco-box box1" >
+
+<div class="box-body">
+<strong>「テンプレート/ツール配布用」の購入が必要</strong><br>
+
+<ul class="list level-1">
+
+<li>
+本配布物を改変・一部利用した【テンプレートやツール】の公開及び配布
+
+<ul class="list level-2">
+
+<li>
+無償/有償問わず
+
+</li>
+
+<li>
+改変・一部利用の程度の大小を問わず
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+</div></div>
+<br>
+<br>
+<br>
+<br>
+<h2 id="4-2">"Template by Jaxson"の削除について</h2>
+<div class="deco-box box2" >
+
+<div class="box-body">
+ページ下部footer内の"Template by Jaxson"表示は、<br>
+
+<ul class="list level-1">
+
+<li>
+【シナリオ】の公開及び頒布の場合、削除してもよい
+
+</li>
+
+<li>
+【テンプレート】の公開及び配布の場合、以下の条件を満たしていれば削除してもよい
+
+<ul class="list level-2">
+
+<li>
+配布物内(READMEなど)に本テンプレートの配布元URLが記載されていること
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+<div class="copy-box box1" data-copy onclick="copyBox(this)">
+
+<div class="box-body">
+<div class="small">
+記載例）<br>
+改変元テンプレート：　https://jxsn-wk.booth.pm/items/4385648<br>
+</div>
+</div></div>
+</div></div>
+<br>
+<br>
+<br>
+<br>
+<h2 id="4-3">HTMLファイルDL後の使い方</h2>
+<p>ダウンロードしたHTMLファイル単体だと、スタイル等が適用されません。<br>①貴方の配布予定のフォルダ内に、ダウンロードしたシナリオHTMLを配置して、<br>②同じフォルダに同梱のassetsを丸ごと移動orコピーするようにしてください。</p>
+<br>
+<p>最終的に、配布したいHTMLが以下の状態になっていたらOKです。<br><img class="sc-img" src="assets/img/sample2.png" alt="シナリオHTML出力後の使い方"></p>
+<br>
+<p>generatorとついているファイルはHTML生成ツール関連ファイルなので、シナリオやテンプレート配布時に同梱は不要です。<br>assets/imgフォルダ内「sample.png」「sample2.png」はサンプル用なので、これも配布時に削除して構いません。</p>
+<br>
+<br>
+<br>
+<br>
+</article>
+</main>
+
+<footer class="center">
+Template by <a href="https://jxsn-wk.booth.pm/" target="_blank">Jaxson</a>
+</footer>
+<div id="page_top"><a href="#"></a></div>
+
+</body>
+</html>

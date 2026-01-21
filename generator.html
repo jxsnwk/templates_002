@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>シナリオHTML生成ツール</title>
+  <link rel="stylesheet" href="generator/css/generator.css">
+</head>
+
+<body>
+
+  <div class="layout" id="layout">
+
+    <!-- 上：入力 -->
+    <div class="editor">
+
+      <!-- 出力ファイル名 -->
+      <label>
+        出力ファイル名：
+        <input type="text" id="outputName" value="scenario">
+      </label>
+
+      <!-- 目次階層 -->
+      <label>
+        目次階層：
+        <select id="mokujiLevel">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </label>
+
+      <!-- 機能ON/OFF -->
+      <div class="flgcheckbox">
+        <label>
+          <input type="checkbox" id="mokujiAutoNumFlg">
+          目次自動採番　　
+        </label>
+
+        <label>
+          <input type="checkbox" id="furiganaOnOffFlg">
+          コピペ時ふりがなON/OFF機能　　
+        </label>
+
+        <label>
+          <input type="checkbox" id="tangoHenkanFlg">
+          単語変換機能　　
+        </label>
+      </div>
+
+      <div class="controls">
+        <input type="file" id="txtInput" accept=".txt">
+        <button id="generateBtn">HTMLダウンロード</button>
+        　　プレビュー：現在<button id="togglePreviewBtn">ON</button>
+      </div>
+
+      <textarea id="textEditor" placeholder="ここにTXT内容を入力または編集"></textarea>
+    </div>
+
+    <!-- 下：プレビュー -->
+    <iframe id="preview" class="preview"></iframe>
+  </div>
+
+  <script src="generator/js/generator.js"></script>
+
+
+</body>
+
+</html>

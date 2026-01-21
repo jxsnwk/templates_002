@@ -1,0 +1,169 @@
+/* ===== ベース ===== */
+:root {
+  --bg: #f4f6f8;
+  --panel: #ffffff;
+  --border: #e2e5e9;
+  --text: #2b2f33;
+  --subtext: #6b7280;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===== レイアウト ===== */
+.layout {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 100vh;
+}
+
+/* プレビュー非表示時 */
+.layout.hide-preview {
+  grid-template-rows: 1fr;
+}
+
+/* ===== エディタ ===== */
+.editor {
+  background: var(--panel);
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ===== ラベル・フォーム ===== */
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--subtext);
+}
+
+label input[type="text"],
+label select {
+  margin-left: 8px;
+}
+
+/* ===== input / select ===== */
+input[type="text"],
+select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
+}
+
+/* ===== checkbox ===== */
+.flgcheckbox {
+  display: flex;
+  gap: 16px;        /* ラベル同士の間隔 */
+  align-items: center;
+  flex-wrap: wrap; /* 画面が狭いとき折り返したいなら */
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* ===== コントロール ===== */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  flex-wrap: wrap;
+}
+
+/* ===== ボタン ===== */
+button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.05s, box-shadow 0.2s;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+#togglePreviewBtn {
+  background: #64748b;
+}
+
+#togglePreviewBtn:hover {
+  background: #475569;
+}
+
+/* ===== file input ===== */
+input[type="file"] {
+  font-size: 13px;
+  color: var(--subtext);
+}
+
+/* ===== textarea ===== */
+textarea {
+  flex: 1;
+  width: 100%;
+  resize: none;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
+}
+
+/* ===== プレビュー ===== */
+.preview {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+/* 非表示 */
+.preview.hidden {
+  display: none;
+}
+

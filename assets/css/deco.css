@@ -1,0 +1,346 @@
+/* assets/css/deco.css */
+
+/* リンクの設定 */
+a {
+  color: #666;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #aaa;
+}
+
+
+/* ---- 見出し ---- */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #1f2933;
+  line-height: 1.2;
+  padding: 5px 0;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 0.4rem;
+  margin-bottom: 1rem;
+  border-top: 3px solid #1f2933;
+  border-bottom: 3px solid #1f2933;
+  letter-spacing: 0.05em;
+}
+
+h1.title {
+  color: #000;
+  margin-top: 2rem;
+  border: 0px solid #fff;
+  font-family: serif;
+}
+
+h2 {
+  font-size: 1.4rem;
+  padding-left: 0.8rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #1f2933;
+  border-bottom: 1px solid #ddd;
+  background: none;
+}
+
+h3 {
+  font-size: 1.15rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px dashed #aaa;
+}
+
+h3:before {
+  content: "▸";
+  color: #aaa;
+  margin-right: 0.4em;
+}
+
+h4 {
+  font-size: 1rem;
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  box-shadow: 1px 1px 0 #ddd;
+}
+
+/* ---- 区切り ---- */
+hr {
+  margin: 1rem 0;
+  border: none;
+  border-top: 2px dashed #ddd;
+}
+
+/* ---- 目次 ---- */
+.mokuji a {
+  color: #333;
+  text-decoration: none;
+}
+
+.mokuji a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .mokuji {
+    background: rgba(200, 200, 200, 0.9);
+  }
+}
+
+/* ---- 装飾BOX ---- */
+.box-title {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.box-body {
+  padding: 0.8rem;
+}
+
+
+/* 装飾BOX:装飾1 */
+.deco-box.box1 {
+  border: 2px solid #ddd;
+}
+
+.deco-box.box1>.box-title {
+  background: #ddd;
+  color: #000;
+}
+
+.deco-box.box1>.box-body {
+  background: #fff;
+}
+
+/* 装飾BOX:装飾2 */
+.deco-box.box2 {
+  border: 2px solid #1f2933;
+}
+
+.deco-box.box2>.box-title {
+  background: #1f2933;
+  color: #fff;
+}
+
+.deco-box.box2>.box-body {
+  background: #e8ebef;
+}
+
+/* 装飾BOX:装飾3 */
+.deco-box.box3 {
+  border: none;
+}
+
+.deco-box.box3>.box-title {
+  background: #c2d9f3;
+}
+
+.deco-box.box3>.box-body {
+  background: #eef4fb;
+}
+
+
+/* ---- コピー装飾BOX ---- */
+.copy-box {
+  position: relative;
+}
+
+.copy-box:hover {
+  cursor: pointer;
+}
+
+.copy-box::after {
+  content: "📋";
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.copy-box:hover::after {
+  opacity: 1;
+}
+
+.copy-box:active {
+  opacity: 0.5;
+  box-shadow: 0 0 0 2px rgba(0, 150, 255, 0.3);
+}
+
+/* コピー装飾BOX:装飾1 */
+/* 共通 */
+.copy-box.box1 {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.copy-box.box1>.box-title {
+
+  background-color: #ddd;
+}
+
+.copy-box.box1>.box-body {
+
+  background-color: #fafafa;
+}
+
+/* タイトルあり */
+.copy-box.box1:has(> .box-title)>.box-title {
+  border-top: 2px solid #ddd;
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+  border-radius: 5px 5px 0 0;
+}
+
+.copy-box.box1:has(> .box-title)>.box-body {
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+  border-bottom: 2px solid #ddd;
+  border-radius: 0 0 5px 5px;
+}
+
+/* タイトルなし */
+.copy-box.box1:not(:has(> .box-title))>.box-body {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+}
+
+
+
+/* ---- 折り畳みBOX ---- */
+.fold-box {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+.fold-box .box-title {
+  padding: 0.75rem 1rem;
+  background: #f3f3f3;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 折り畳みBOX:装飾1 */
+.fold-box.box1 {
+  border: 1px solid #aaa;
+}
+
+.fold-box.box1>.box-title {
+  background: #f3f3f3;
+}
+
+.fold-box.box1>.box-body {
+  background-color: #FFF;
+}
+
+/* ---- シナリオ情報BOX ---- */
+.info-box {
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 0 auto;
+}
+
+
+/* ボックスタイトル */
+.info-box>.box-title {
+  text-align: center;
+  padding: 0 0.7rem;
+}
+
+/* info-item 行 */
+.info-box .info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.info-box .info-item:last-child {
+  border-bottom: none;
+}
+
+
+/* ラベルと値 */
+.info-box .info-label,
+.info-box .info-value {
+  padding: 4px 10px;
+}
+
+.info-box .info-label {
+  white-space: nowrap;
+}
+
+.info-box .info-value {
+  background-color: #d9e7f7;
+  border-radius: 8px;
+}
+
+
+
+/* ---- ふりがな ---- */
+ruby rt {
+  font-size: 0.6em;
+  color: #555;
+}
+
+/* ---- 下線 ---- */
+.underline {
+  text-decoration: underline;
+  text-decoration-color: #d9e7f7;
+  /* 色 */
+  text-decoration-thickness: 6px;
+  /* 線の太さ */
+  text-underline-offset: -6px;
+}
+
+
+/* ---- テーブル ---- */
+.sc-table {
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.sc-table th {
+  color: #FFF;
+  background: #1f2933;
+}
+
+.sc-table th,
+.sc-table td {
+  border: 1px solid #ccc;
+  padding: 2px 4px;
+}
+
+.sc-table td.em {
+  color: #FFF;
+  background: #1f2933;
+  font-weight: bold;
+}
+
+
+/* ---- 上へスクロール ---- */
+#page_top {
+  background: #666;
+}
+
+#page_top a:hover {
+  background: #aaa;
+}
+
+#page_top a::before {
+  content: '▲';
+  color: #fff;
+}

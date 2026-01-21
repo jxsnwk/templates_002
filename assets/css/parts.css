@@ -1,0 +1,138 @@
+@charset "UTF-8";
+/* コピペ時ふりがなONOFFボタン */
+.toggle_input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggle_label {
+  width: 63px;
+  height: 30px;
+  background: #fff;
+  border: 2px solid #eee;
+  position: relative;
+  display: inline-block;
+  border-radius: 30px;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.toggle_label:after {
+  text-align: center;
+  line-height: 1.5rem; /* ON/OFF文字の表示位置が縦中央からズレる場合、ここを調整 */
+  content: "OFF";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 100%;
+  left: 1px;
+  top: 1px;
+  z-index: 2;
+  background: #eee;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.toggle_input:checked + .toggle_label {
+  border: 2px solid #4BD865;
+}
+
+.toggle_input:checked + .toggle_label:after {
+  content: "ON";
+  color: #FFF;
+  left: 34px;
+  background: #4BD865;
+}
+
+.toggle_button {
+  position: relative;
+  text-align: right;
+  font-size: 50%;
+  margin: auto 5px;
+}
+
+.toggle_button::before {
+  content: "コピペ時ふりがな";
+}
+
+/* ルビ消し */
+.rubyoff rt, .rubyon rt {
+  display: none;
+}
+
+/*ライセンス表示*/
+.licence {
+  font-size: 9px;
+  color: #000;
+  text-align: left;
+  top: 0;
+  border-style: solid;
+  margin: 0 0 50px 0;
+  padding: 10px;
+}
+
+.licence:before {
+  white-space: pre-wrap;
+  content: "本作は、「株式会社アークライト」及び「株式会社KADOKAWA」が権利を有する『クトゥルフ神話TRPG』シリーズの二次創作物です。\A"
+	"Call of Cthulhu is copyright ©1981, 2015, 2019 by Chaosium Inc. ;all rights reserved. Arranged by Arclight Inc.\A"
+	"Call of Cthulhu is a registered trademark of Chaosium Inc.\A"
+	"PUBLISHED BY KADOKAWA CORPORATION　「クトゥルフ神話TRPG」「新クトゥルフ神話TRPG」";
+}
+
+/* 単語置換 */
+form.change input {
+  border-radius: 8px;
+  margin: 0 0 0 2px;
+  padding: 2px 5px;
+}
+
+form.change input[type="button"] {
+  font-size: 0.8em;
+  padding: 5px 8px;
+  border: none;
+  color: #FFF;
+  background: -webkit-gradient(linear, left bottom, left top, from(#ccc), to(#eee));
+  background: linear-gradient(to top, #ccc 0%, #eee 100%);
+  -webkit-box-shadow: inset 1px 1px 1px #FFF;
+          box-shadow: inset 1px 1px 1px #FFF;
+}
+
+form.change input[type="button"]:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#ccc));
+  background: linear-gradient(to bottom, #aaa 0%, #ccc 100%);
+}
+
+
+/* コピペ装飾BOXトースト */
+.copy-toast {
+  position: fixed;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 6px;
+
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+
+  opacity: 0;
+  transform: translateY(4px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+
+  z-index: 99999;
+  pointer-events: none;
+}
+
+.copy-toast.show {
+  opacity: 1;
+  transform: translateY(-6px);
+}

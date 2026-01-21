@@ -1,0 +1,320 @@
+/* assets/css/layout.css */
+
+/* ---- 全体 ---- */
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+p {
+  font-size: 14px;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.6em;
+}
+
+input {
+  color: var(--sub);
+  border: 1px solid #aaa;
+  background-color: #fff;
+}
+
+input::-webkit-input-placeholder,
+input:-ms-input-placeholder,
+input::-ms-input-placeholder,
+input::placeholder {
+  color: #ddd;
+}
+
+
+/*---- リスト ----*/
+ul.list {
+  margin: 0;
+  padding-inline-start: 20px;
+}
+
+/*---- チェックボックス ----*/
+ul.checkbox {
+  margin: 0;
+  padding-inline-start: 0px;
+}
+
+ul.checkbox li {
+  list-style: none;
+}
+
+header {
+  text-align: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+footer {
+  font-size: 8px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.small {
+  font-size: 10px;
+  line-height: 1.6em;
+}
+
+
+/* ---- レイアウト ---- */
+main.layout-1col,
+main.layout-2col {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+main.layout-1col {
+  grid-template-columns: 1fr;
+}
+
+main.layout-2col {
+  grid-template-columns: auto 1fr;
+}
+
+/* ---- 目次 ---- */
+.mokuji {
+  position: sticky;
+  top: 1rem;
+  height: calc(100vh - 6rem);
+  overflow-y: auto;
+  width: 260px;
+}
+
+.mokuji-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.mokuji-item {
+  margin: 0.25rem 0;
+}
+
+.mokuji-item.lv2 {
+  padding-left: 1rem;
+}
+
+.mokuji-item.lv3 {
+  padding-left: 1rem;
+}
+
+.mokuji-item.lv4 {
+  padding-left: 1rem;
+}
+
+.mokuji-item.lv5 {
+  padding-left: 1rem;
+}
+
+
+/* ---- 目次開閉制御 ---- */
+.mokuji-node>ul {
+  display: none;
+  margin-left: 1em;
+}
+
+.mokuji-node.open>ul {
+  display: block;
+}
+
+.mokuji-toggle {
+  width: 1em;
+  height: 1em;
+  margin-right: .2em;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+@keyframes openMokuji {
+  from {
+    transform: rotate(-90deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes closeMokuji {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(-90deg);
+  }
+}
+
+.mokuji-toggle::before {
+  font-size: 0.6rem;
+  content: "▼";
+  transform: rotate(-90deg);
+}
+
+.mokuji-node.open>.mokuji-row .mokuji-toggle::before {
+  font-size: 0.6rem;
+  content: "▼";
+  animation: openMokuji 0.2s ease-in-out forwards;
+}
+
+.mokuji ul,
+.mokuji li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mokuji li::marker {
+  content: "";
+}
+
+/* ---- 目次行 ---- */
+.mokuji-row {
+  display: flex;
+  align-items: center;
+  gap: .1em;
+}
+
+/* トグル共通サイズ（有無でズレないように） */
+.mokuji-toggle {
+  width: 1.2em;
+  height: 1.2em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+  flex-shrink: 0;
+}
+
+/* トグルが無い階層用のダミー */
+.mokuji-toggle,
+.mokuji-dummy {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+/* ---- ハンバーガーメニュー ---- */
+.mokuji-hamburger {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+}
+
+/* 600px以下 */
+@media (max-width: 600px) {
+  main.layout-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .mokuji {
+    position: fixed;
+    left: -260px;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    padding: 40px 0 0px 0;
+    transition: left .3s;
+    z-index: 1000;
+  }
+
+  .mokuji.open {
+    left: 0;
+    padding: 40px 0 0 20px;
+  }
+
+  .mokuji-hamburger {
+    display: block;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1100;
+  }
+}
+
+/* ---- 本文 ---- */
+.content img.sc-img {
+  max-width: 100%;
+  height: auto;
+}
+
+details.fold {
+  margin: 1.5rem 0;
+}
+
+
+/* 上へスクロール */
+#page_top {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  background: #444;
+  opacity: 0.6;
+}
+
+#page_top a {
+  position: relative;
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+}
+
+#page_top a:hover {
+  background: #aaa;
+  opacity: 0.8;
+}
+
+#page_top a::before {
+  content: '▲';
+  font-size: 20px;
+  color: #fff;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
+
+/* ----  脚注参照 ---- */
+.footnote-tooltip {
+  position: absolute;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  font-size: 0.85em;
+  border-radius: 4px;
+  max-width: min(300px, 90vw);
+  white-space: pre-wrap;
+  z-index: 9999;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
