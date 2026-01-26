@@ -1,5 +1,12 @@
-/* assets/css/layout.css */
+@charset "UTF-8";
 
+/* assets/css/layout.css */
+/* レイアウトCSS：
+大枠のレイアウト・デザイン設定はここで行っています。変に触ると崩れます。 */
+
+/* =========================================================
+  基本設定
+========================================================= */
 /* ---- 全体 ---- */
 html {
   scroll-behavior: smooth;
@@ -14,7 +21,7 @@ p {
 }
 
 input {
-  color: var(--sub);
+  color: #444;
   border: 1px solid #aaa;
   background-color: #fff;
 }
@@ -24,6 +31,83 @@ input:-ms-input-placeholder,
 input::-ms-input-placeholder,
 input::placeholder {
   color: #ddd;
+}
+
+
+
+
+/* =========================================================
+  レイアウト
+========================================================= */
+/* ---- レイアウト ---- */
+main.layout-1col,
+main.layout-2col {
+  display: grid;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+main.layout-1col {
+  grid-template-columns: 1fr;
+}
+
+main.layout-2col {
+  grid-template-columns: auto 1fr;
+}
+
+
+
+
+/* =========================================================
+  ヘッダー / フッター
+========================================================= */
+header {
+  text-align: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+footer {
+  font-size: 8px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+
+
+
+/* =========================================================
+  コンテンツ関連
+========================================================= */
+/*---- 中央,左,右寄せ/小文字 ----*/
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.small {
+  font-size: 10px;
+  line-height: 1.6em;
+}
+
+
+
+/* ---- 画像 ---- */
+.content img.sc-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---- 折り畳み ---- */
+details.fold {
+  margin: 1.5rem 0;
 }
 
 
@@ -43,53 +127,10 @@ ul.checkbox li {
   list-style: none;
 }
 
-header {
-  text-align: center;
-  padding: 1.5rem 2rem;
-  border-bottom: 1px solid #ccc;
-}
 
-footer {
-  font-size: 8px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-
-.center {
-  text-align: center;
-}
-
-.left {
-  text-align: left;
-}
-
-.right {
-  text-align: right;
-}
-
-.small {
-  font-size: 10px;
-  line-height: 1.6em;
-}
-
-
-/* ---- レイアウト ---- */
-main.layout-1col,
-main.layout-2col {
-  display: grid;
-  gap: 2rem;
-  padding: 2rem;
-}
-
-main.layout-1col {
-  grid-template-columns: 1fr;
-}
-
-main.layout-2col {
-  grid-template-columns: auto 1fr;
-}
-
+/* =========================================================
+  目次
+========================================================= */
 /* ---- 目次 ---- */
 .mokuji {
   position: sticky;
@@ -109,72 +150,22 @@ main.layout-2col {
   margin: 0.25rem 0;
 }
 
-.mokuji-item.lv2 {
-  padding-left: 1rem;
-}
-
-.mokuji-item.lv3 {
-  padding-left: 1rem;
-}
-
-.mokuji-item.lv4 {
-  padding-left: 1rem;
-}
-
+.mokuji-item.lv2,
+.mokuji-item.lv3,
+.mokuji-item.lv4,
 .mokuji-item.lv5 {
   padding-left: 1rem;
 }
 
 
 /* ---- 目次開閉制御 ---- */
-.mokuji-node>ul {
+.mokuji-node > ul {
   display: none;
   margin-left: 1em;
 }
 
-.mokuji-node.open>ul {
+.mokuji-node.open > ul {
   display: block;
-}
-
-.mokuji-toggle {
-  width: 1em;
-  height: 1em;
-  margin-right: .2em;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-@keyframes openMokuji {
-  from {
-    transform: rotate(-90deg);
-  }
-
-  to {
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes closeMokuji {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(-90deg);
-  }
-}
-
-.mokuji-toggle::before {
-  font-size: 0.6rem;
-  content: "▼";
-  transform: rotate(-90deg);
-}
-
-.mokuji-node.open>.mokuji-row .mokuji-toggle::before {
-  font-size: 0.6rem;
-  content: "▼";
-  animation: openMokuji 0.2s ease-in-out forwards;
 }
 
 .mokuji ul,
@@ -195,10 +186,21 @@ main.layout-2col {
   gap: .1em;
 }
 
+
+/* ---- 目次トグル ---- */
+/* アニメーション */
+@keyframes openMokuji {
+  from {
+    transform: rotate(-90deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
 /* トグル共通サイズ（有無でズレないように） */
 .mokuji-toggle {
-  width: 1.2em;
-  height: 1.2em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -216,12 +218,43 @@ main.layout-2col {
   flex-shrink: 0;
 }
 
+.mokuji-toggle::before {
+  font-size: 0.6rem;
+  content: "▼";
+  transform: rotate(-90deg);
+}
+
+.mokuji-node.open>.mokuji-row .mokuji-toggle::before {
+  font-size: 0.6rem;
+  content: "▼";
+  animation: openMokuji 0.2s ease-in-out forwards;
+}
+
+
+
+
+/* =========================================================
+  ハンバーガーメニュー
+========================================================= */
 /* ---- ハンバーガーメニュー ---- */
 .mokuji-hamburger {
   display: none;
+  width: 40px;
+  height: 40px;
   font-size: 24px;
   background: none;
   border: none;
+  cursor: pointer;
+
+  /* アニメーションは本体に */
+  transition: transform 0.25s ease;
+}
+
+.mokuji-hamburger::before {
+  content: "☰";
+  display: block;
+  line-height: 40px;
+  text-align: center;
 }
 
 /* 600px以下 */
@@ -253,19 +286,25 @@ main.layout-2col {
     right: 10px;
     z-index: 1100;
   }
+
+  /* 開いたとき */
+  #mokuji.open > .mokuji-hamburger::before {
+    content: "×";
+  }
+
+  #mokuji.open > .mokuji-hamburger {
+    transform: rotate(90deg);
+  }
+
+
 }
 
-/* ---- 本文 ---- */
-.content img.sc-img {
-  max-width: 100%;
-  height: auto;
-}
-
-details.fold {
-  margin: 1.5rem 0;
-}
 
 
+
+/* =========================================================
+  上へスクロール
+========================================================= */
 /* 上へスクロール */
 #page_top {
   width: 50px;
@@ -303,18 +342,4 @@ details.fold {
   left: 0;
   margin: auto;
   text-align: center;
-}
-
-/* ----  脚注参照 ---- */
-.footnote-tooltip {
-  position: absolute;
-  background: #fafafa;
-  border: 1px solid #ccc;
-  padding: 4px 8px;
-  font-size: 0.85em;
-  border-radius: 4px;
-  max-width: min(300px, 90vw);
-  white-space: pre-wrap;
-  z-index: 9999;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }

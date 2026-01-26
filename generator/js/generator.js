@@ -16,7 +16,10 @@ const runtimeConfig = {
     outputName: "scenario",
     mokujiLevel: 3,
     furigana: false,
-    tango: false
+    tango: false,
+features: {
+    countText: true,
+}
 };
 
 // -------------------------------
@@ -31,20 +34,20 @@ const BOX_DEFS = {
         closeHtml: "</div></details>"
     },
     deco: {
-        mark: "=",
+        mark: "d",
         state: "inDecoBox",
         classBase: "deco",
         closeHtml: "</div></div>"
     },
     copy: {
-        mark: "!",
+        mark: "=",
         state: "inCopyBox",
         classBase: "copy",
         clickable: true,
         closeHtml: "</div></div>"
     },
     info: {
-        mark: "info",
+        mark: "i",
         state: "inInfoBox",
         classBase: "info",
         useInfo: true,
@@ -223,7 +226,7 @@ btn.addEventListener("click", () => {
 
 
 // =====================================================
-// TXT → HTML 変換パイプライン
+// TXT → HTML 変換
 // =====================================================
 
 function extractBlock(txt, tag) {
@@ -232,6 +235,7 @@ function extractBlock(txt, tag) {
     return match ? match[1].trim() : "";
 }
 
+// headerブロック生成
 function parseHeaderBlock(headerTxt) {
     if (!headerTxt) return "";
 
@@ -266,7 +270,10 @@ function parseHeaderBlock(headerTxt) {
     return state.body.join("\n");
 }
 
+// HTML組み立て
 function buildHtml(txt, prev = false) {
+    // 文字数カウントのデフォルト値リセット
+    runtimeConfig.features.countText = false;
 
     // タイトル・ヘッダーの処理
     const titleBlock = extractBlock(txt, "title");
@@ -313,6 +320,7 @@ function buildHtml(txt, prev = false) {
     // 本文中の <sup> を定義済みの内容で更新
     let htmlBody = finalizeFootnotes(ctx, state.body.join("\n"));
 
+    // 目次階層構築
     const mokujiTree = buildMokujiTree(state.mokuji);
     return buildDocument(
         state.title,
@@ -396,7 +404,7 @@ class ParseState {
         this.tableHasHeader = false;
 
         this.mokuji = [];
-        this.headingCounters = [0, 0, 0, 0, 0],
+        this.headingCounters = [0, 0, 0, 0, 0];
 
         this.headingCount = 0;
         this.pendingAnchor = null;
@@ -408,16 +416,12 @@ class ParseState {
     }
 
 
-    // -------------------------------------------------
     // 行を段落に追加
-    // -------------------------------------------------
     pushLine(line) {
         this.paragraph.push(line);
     }
 
-    // -------------------------------------------------
     // 段落を確定して出力
-    // -------------------------------------------------
     flushParagraph() {
         if (!this.paragraph.length) return;
 
@@ -438,9 +442,7 @@ class ParseState {
     }
 
 
-    // -------------------------------------------------
     // BOX用
-    // -------------------------------------------------
     hasBox() {
         return this.boxStack.length > 0;
     }
@@ -484,9 +486,9 @@ const rules = [
 
 
 
-// ================================
-// ルール設定
-// ================================
+// -------------------------------
+// 区切り線/閉じタグ
+// -------------------------------
 function ruleSeparator() {
     return {
         match: line => {
@@ -513,6 +515,9 @@ function ruleSeparator() {
     };
 }
 
+// -------------------------------
+// 左寄せ/中央寄せ/右寄せ/小文字
+// -------------------------------
 const ALIGN_CLASS_MAP = {
     left: "left", l: "left",
     center: "center", c: "center",
@@ -520,14 +525,13 @@ const ALIGN_CLASS_MAP = {
     small: "small", s: "small"
 };
 
-
 function ruleAlignInlineBlock() {
     return {
         match: line => {
-            const m = line.match(
+            const matched = line.match(
                 /^\[(left|l|center|c|right|r|small|s)\]([\s\S]+?)\[\/\1\]$/
             );
-            if (!m) return null;
+            if (!matched) return null;
 
             const map = {
                 left: "left", l: "left",
@@ -537,8 +541,8 @@ function ruleAlignInlineBlock() {
             };
 
             return {
-                cls: map[m[1]],
-                text: m[2]
+                cls: map[matched[1]],
+                text: matched[2]
             };
         },
 
@@ -595,6 +599,9 @@ function parseAlignTag(line) {
     return null;
 }
 
+// -------------------------------
+// 装飾カード
+// -------------------------------
 function ruleInfoLine() {
     return {
         match: (line, ctx) => {
@@ -605,6 +612,7 @@ function ruleInfoLine() {
 
         handle: (_, ctx, line) => {
             const box = ctx.s.currentBox();
+            const level = box.level || 1;
             const trimmed = line.trim();
 
             // 空行
@@ -614,12 +622,12 @@ function ruleInfoLine() {
             }
 
             // ラベル: 値（全角：も対応）
-            const m = trimmed.match(/^(.+?)[：:]\s*(.+)$/);
-            if (m) {
+            const matched = trimmed.match(/^(.+?)[：:]\s*(.+)$/);
+            if (matched) {
                 box.buffer.push(`
 <div class="info-item">
-  <div class="info-label">${escapeHtml(m[1])}</div>
-  <div class="info-value"><span>${parseInline(m[2], ctx)}</span></div>
+  <div class="info-label">${parseInline(matched[1], ctx)}</div>
+  <div class="info-value"><span>${parseInline(matched[2], ctx)}</span></div>
 </div>`);
                 return;
             }
@@ -630,7 +638,9 @@ function ruleInfoLine() {
     };
 }
 
-
+// -------------------------------
+// 装飾カード
+// -------------------------------
 function ruleAlignBlock() {
     return {
         match: line => {
@@ -683,7 +693,6 @@ function ruleAlignBlock() {
     };
 }
 
-
 function ruleAlignBlockEnd() {
     return {
         match: line => {
@@ -710,17 +719,32 @@ function ruleAlignBlockEnd() {
     };
 }
 
+// -------------------------------
+// 装飾BOX
+// -------------------------------
+
 function ruleBoxStart(type) {
     const def = BOX_DEFS[type];
     const mark = def.mark;
 
     return {
         match: line => {
-            const m = line.trim().match(
-                new RegExp(`^\\[(${mark}+)\\](.*)$`)
+            const matched = line.trim().match(
+                new RegExp(
+                    `^\\[(?:(${mark}+)|
+                        ${mark}(\\d+))\\](.*)$`.replace(/\s+/g, "")
+                )
             );
-            return m
-                ? { level: m[1].length, title: m[2].trim() }
+
+            if (!matched) return null;
+
+            // 装飾レベル
+            const level = matched[1]
+                ? matched[1].length        // {mark}数カウント(例：[=====])
+                : Number(matched[2]);      // [{mark}数値](例：[=5])
+
+            return matched
+                ? { level: level, title: (matched[3] || "").trim() }
                 : null;
         },
 
@@ -765,10 +789,13 @@ ${titleHtml}
 
 function ruleBoxEnd(type) {
     const ruleDef = BOX_DEFS[type];
+    const mark = ruleDef.mark;
 
     return {
         match: line =>
-            new RegExp(`^\\[\\/(${ruleDef.mark}+)\\]$`)
+            new RegExp(
+                `^\\[\\/(?:${mark}+|${mark}\\d+)\\]$`
+            )
                 .test(line.trim())
                 ? {}
                 : null,
@@ -797,9 +824,9 @@ function ruleBoxEnd(type) {
     };
 }
 
-
-
-
+// -------------------------------
+// リスト/チェックリスト
+// -------------------------------
 function ruleList() {
     return {
         match: line => {
@@ -868,7 +895,6 @@ function ruleList() {
     };
 }
 
-
 function renderList(list) {
     const baseClass = list.isCheckbox ? "checkbox" : "list";
     const cls = `${baseClass} level-${list.level}`;
@@ -884,98 +910,9 @@ ${item.children.map(renderList).join("")}
 </ul>`;
 }
 
-
-function ruleMidasi() {
-    return {
-        match: line => {
-            const matched = line.match(/^(#{1,5})\s*(.+)$/);
-            const MIDASI = matched
-                ? { level: matched[1].length, text: matched[2].trim() }
-                : null;
-            return MIDASI;
-        },
-        handle: (rule, ctx) => {
-            closeListIfNeeded(ctx);
-            ctx.flushParagraph();
-
-            // アンカーID/見出し採番ID
-            const id = ctx.s.pendingAnchor
-                || `${generateMidasiId(rule.level, ctx.s.headingCounters)}`;
-
-            ctx.s.pendingAnchor = null;
-
-            let midasiTxt = `${rule.text}`;
-
-            if (runtimeConfig.mokujiAutoNum) {
-                midasiTxt = `${id}. ${rule.text}`;
-            }
-            if (rule.level <= runtimeConfig.mokujiLevel) {
-                ctx.s.mokuji.push({ level: rule.level, text: escapeHtml(midasiTxt), id });
-            }
-
-            const h = `<h${rule.level} id="${id}">${escapeHtml(midasiTxt)}</h${rule.level}>`;
-            pushHtml(ctx, h);
-        }
-    }
-}
-
-
-
-
-// 見出しID採番
-function generateMidasiId(level, counters) {
-    const idx = level - 1;
-
-    // 自分のレベルを +1
-    counters[idx]++;
-
-    // 下位レベルをリセット
-    for (let i = idx + 1; i < counters.length; i++) {
-        counters[i] = 0;
-    }
-
-    // 0 を除外して id 化
-    return counters
-        .slice(0, idx + 1)
-        .filter(n => n > 0)
-        .join("-");
-}
-
-
-function ruleEmpty() {
-    return {
-        match: line => {
-            const matched = (line.trim() === "");
-            const EMPTY = matched ? {} : null;
-            return EMPTY;
-        },
-        handle: (__, ctx) => {
-            closeTableIfNeeded(ctx);
-            closeListIfNeeded(ctx);
-            ctx.flushParagraph();
-
-            pushBreak(ctx)
-        }
-    };
-}
-
-function ruleDefault() {
-    return {
-        handle(line, ctx) {
-            // info中はスキップ
-            const box = ctx.s.currentBox();
-            if (box?.type === "info") return;
-
-            if (ctx.s.listStack.length) return;
-            if (ctx.s.inList) return;
-
-            ctx.s.paragraph.push(parseInline(line, ctx));
-        }
-    }
-}
-
-
-
+// -------------------------------
+// テーブル
+// -------------------------------
 function ruleTableRow() {
     return {
         match: line => {
@@ -1035,6 +972,103 @@ function ruleTableRow() {
     };
 }
 
+// -------------------------------
+// 見出し
+// -------------------------------
+function ruleMidasi() {
+    return {
+        match: line => {
+            const matched = line.match(/^(#{1,5})\s*(.+)$/);
+            const MIDASI = matched
+                ? { level: matched[1].length, text: matched[2].trim() }
+                : null;
+            return MIDASI;
+        },
+        handle: (rule, ctx) => {
+            closeListIfNeeded(ctx);
+            ctx.flushParagraph();
+
+            // アンカーID/見出し採番ID
+            const id = ctx.s.pendingAnchor
+                || `${generateMidasiId(rule.level, ctx.s.headingCounters)}`;
+
+            ctx.s.pendingAnchor = null;
+
+            let midasiTxt = `${rule.text}`;
+
+            if (runtimeConfig.mokujiAutoNum) {
+                midasiTxt = `${id}. ${rule.text}`;
+            }
+            if (rule.level <= runtimeConfig.mokujiLevel) {
+                ctx.s.mokuji.push({ level: rule.level, text: escapeHtml(midasiTxt), id });
+            }
+
+            const h = `<h${rule.level} id="${id}">${escapeHtml(midasiTxt)}</h${rule.level}>`;
+            pushHtml(ctx, h);
+        }
+    }
+}
+
+// 見出しID採番
+function generateMidasiId(level, counters) {
+    const idx = level - 1;
+
+    // 上位レベルが 0 の場合は 1 で補完
+    for (let i = 0; i < idx; i++) {
+        if (counters[i] === 0) {
+            counters[i] = 1;
+        }
+    }
+
+    // 自分のレベルを +1
+    counters[idx]++;
+
+    // 下位レベルをリセット
+    for (let i = idx + 1; i < counters.length; i++) {
+        counters[i] = 0;
+    }
+
+    // 0 を除外して id 化
+    return counters
+        .slice(0, idx + 1)
+        .filter(n => n > 0)
+        .join("-");
+}
+
+// 空文字空行
+function ruleEmpty() {
+    return {
+        match: line => {
+            const matched = (line.trim() === "");
+            const EMPTY = matched ? {} : null;
+            return EMPTY;
+        },
+        handle: (__, ctx) => {
+            closeTableIfNeeded(ctx);
+            closeListIfNeeded(ctx);
+            ctx.flushParagraph();
+
+            pushBreak(ctx)
+        }
+    };
+}
+
+// デフォルト
+function ruleDefault() {
+    return {
+        handle(line, ctx) {
+            // info中はスキップ
+            const box = ctx.s.currentBox();
+            if (box?.type === "info") return;
+
+            if (ctx.s.listStack.length) return;
+            if (ctx.s.inList) return;
+
+            ctx.s.paragraph.push(parseInline(line, ctx));
+        }
+    }
+}
+
 
 
 // =====================================================
@@ -1059,11 +1093,20 @@ function parseInline(text, ctx) {
     // ---- サイズ
     result = applySize(result);
 
-    // ---- 装飾
+    // ---- 文字強調表現
     result = applyDecoration(result);
+
+    // ---- spanアイコン
+    result = applySpanIcon(result);
+
+    // ---- span装飾
+    result = applySpanDecoration(result);
 
     // ---- 権利表示
     result = applyLicenseDisp(result);
+
+    // ---- 文字数カウント表示
+    result = applyCountTextDisp(result);
 
     // ---- 処理を最後に適用 ----
     // ---- 脚注
@@ -1072,7 +1115,7 @@ function parseInline(text, ctx) {
     return result;
 }
 
-// ---- 画像
+// ---- 画像 ![txt](utl)
 function applyImage(text) {
     return text.replace(
         /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]+)")?\)/g,
@@ -1092,15 +1135,16 @@ function applyImage(text) {
     );
 }
 
-// ---- リンク
+// ---- リンク [txt](url)
 function applyLink(text) {
-    return text.replace(
+    // 既存の Markdown 形式リンク
+    text = text.replace(
         /\[([^\]]+)\]\(([^)\s]+)(?:\s+"([^"]+)")?\)/g,
         (_, label, href, title) => {
             const titleAttr = title ? ` title="${title}"` : "";
 
             if (href.startsWith("#")) {
-                return `<a href="${href}" ${titleAttr}>${label}</a>`;
+                return `<a href="${href}"${titleAttr}>${label}</a>`;
             }
 
             if (/^https?:\/\//.test(href)) {
@@ -1110,6 +1154,17 @@ function applyLink(text) {
             return `<a href="${href}"${titleAttr}>${label}</a>`;
         }
     );
+
+    // http / https で始まる素のURLをリンク化
+    // すでに <a> 内にあるものは除外
+    text = text.replace(
+        /(^|[^"'=])(https?:\/\/[^\s<]+)/g,
+        (_, prefix, url) => {
+            return `${prefix}<a href="${url}" target="_blank">${url}</a>`;
+        }
+    );
+
+    return text;
 }
 
 // ---- アンカー定義 [[#id]]
@@ -1126,20 +1181,20 @@ function applyFurigana(text) {
     );
 }
 
-// ---- 装飾
+// ---- 文字強調表現
 function applyDecoration(text) {
-    let r = text;
+    let result = text;
 
     // **太字**
-    r = r.replace(/\*\*(.+?)\*\*/g, `<strong>$1</strong>`);
+    result = result.replace(/\*\*(.+?)\*\*/g, `<strong>$1</strong>`);
 
     // __下線__
-    r = r.replace(/__(.+?)__/g, `<span class="underline">$1</span>`);
+    result = result.replace(/__(.+?)__/g, `<span class="underline">$1</span>`);
 
-    return r;
+    return result;
 }
 
-// ---- サイズ
+// ---- サイズ [s][/s]
 function applySize(text) {
     return text.replace(
         /\[(small|s)\]([^[]+?)\[\/(small|s)\]/g,
@@ -1147,13 +1202,44 @@ function applySize(text) {
     );
 }
 
+// ---- spanアイコン [icon CSSclass]
+function applySpanIcon(text) {
+    return text.replace(
+        /\[icon\s*([a-zA-Z0-9_-\s]+)\s*\]/g,
+        (_, cls) => `<span class="icon ${cls}"></span>`
+    );
+}
+
+// ---- span装飾 [span CSSclass]テキスト[/span]
+function applySpanDecoration(text) {
+    return text.replace(
+        /\[span\s+([a-zA-Z0-9_-]+)\]([\s\S]*?)\[\/span\]/g,
+        (_, cls, content) =>
+            `<span class="${cls}">${content}</span>`
+    );
+}
+
 
 // ---- ライセンス表示パーツ [[権利表示]]
 function applyLicenseDisp(text) {
     return text.replace(/\[\[権利表示\]\]/g,
-        `<!-- ライセンス表示パーツ：ここから -->
+        `
+     <!-- ライセンス表示パーツ：ここから -->
     <div class="licence"></div>
     <!-- ライセンス表示パーツ：ここまで -->`
+    );
+}
+
+// ---- 文字数カウント表示パーツ [[文字数カウント]]
+function applyCountTextDisp(text) {
+    // パーツ使用フラグ
+    runtimeConfig.features.countText = true;
+
+    return text.replace(/\[\[文字数カウント\]\]/g,
+        `
+     <!-- 文字数カウント表示パーツ：ここから -->
+    <span class="countTextDisp"></span>
+    <!-- 文字数カウント表示パーツ：ここまで -->`
     );
 }
 
@@ -1236,14 +1322,14 @@ function escapeRegExp(str) {
 }
 
 // 脚注リストを末尾に追加する　※未使用
-function renderFootnotes(ctx) {
-    if (!ctx.s.footnoteOrder.length) return "";
+// function renderFootnotes(ctx) {
+//     if (!ctx.s.footnoteOrder.length) return "";
 
-    return ctx.s.footnoteOrder.map(label => {
-        const fn = ctx.s.footnotes[label];
-        return `<a href="#footnote-ref-${fn.number}" id="footnote${fn.number}" class="footnote-def">[${fn.number}]</a>： ${escapeHtml(fn.text)}<br>`;
-    }).join("\n");
-}
+//     return ctx.s.footnoteOrder.map(label => {
+//         const fn = ctx.s.footnotes[label];
+//         return `<a href="#footnote-ref-${fn.number}" id="footnote${fn.number}" class="footnote-def">[${fn.number}]</a>： ${escapeHtml(fn.text)}<br>`;
+//     }).join("\n");
+// }
 
 
 // =====================================================
@@ -1251,7 +1337,6 @@ function renderFootnotes(ctx) {
 // =====================================================
 
 function buildDocument(title, body, mokuji, headerHtml) {
-    const bodyAttr = runtimeConfig.furigana ? ` oncopy="rubyToggle()"` : "";
 
     return `<!DOCTYPE html>
 <html lang="ja">
@@ -1263,25 +1348,25 @@ function buildDocument(title, body, mokuji, headerHtml) {
 <link rel="stylesheet" href="assets/css/parts.css">
 <script src="assets/js/parts.js"></script>
 </head>
-<body${bodyAttr}>
+<body${runtimeConfig.furigana ? ` oncopy="rubyToggle()"` : ""}${runtimeConfig.features.countText ? ` onload="countText()"` : ""}>
 
-<header>
+<header id="header">
 <h1 class="title">${escapeHtml(title)}</h1>
 ${headerHtml || ""}
 </header>
 
 <main class="${mokuji.length ? "layout-2col" : "layout-1col"}">
 ${mokuji.length ? buildMokuji(mokuji) : ""}
-<article class="content">
+<article class="content" id="content">
 ${runtimeConfig.tango ? buildTangoForm() : ""}
 ${body}
 </article>
 </main>
 
-<footer class="center">
+<footer id="footer" class="center">
 Template by <a href="https://jxsn-wk.booth.pm/" target="_blank">Jaxson</a>
 </footer>
-<div id="page_top"><a href="#"></a></div>
+<div id="page_top"><a href="#header"></a></div>
 
 </body>
 </html>`;
@@ -1307,7 +1392,7 @@ function buildMokuji(items) {
     const tree = buildMokujiTree(items);
     return `
 <nav class="mokuji" id="mokuji">
-  <button class="mokuji-hamburger" onclick="toggleMokuji()">☰</button>
+  <button class="mokuji-hamburger" onclick="toggleMokuji()"><span></span></button>
   ${runtimeConfig.furigana ? buildFuriganaToggle() : ""}
   <ul class="mokuji-list">
   ${renderMokujiNodes(tree)}
@@ -1380,17 +1465,21 @@ function buildFuriganaToggle() {
 }
 
 // 単語置換フォームパーツ
-function buildTangoForm() {
+function buildTangoForm(formId = 1) {
+    const arrPlaceholder = ['{PC苗字}','{PC名前}','{NPC苗字}','{NPC名前}'];
+    let TangoInput = '';
+
+    arrPlaceholder.forEach((placeholder, index, array) => {
+        TangoInput += `
+        単語${index+1}<input name="name${index+1}" placeholder="${placeholder}"><br>`;
+});
+
     return `
 <!-- 単語置換パーツ：ここから -->
-<form class="change" name="change1">
-単語1<input name="name0" placeholder="{PC苗字}"><br>
-単語2<input name="name1" placeholder="{PC名前}"><br>
+<form class="change" id="change${formId}" name="change${formId}">
+${TangoInput}
 <br>
-単語3<input name="name2" placeholder="{NPC苗字}"><br>
-単語4<input name="name3" placeholder="{NPC名前}"><br>
-<br>
-<input type="button" value="置換" onclick="changeWord()">
+<input type="button" value="置換" onclick="changeWord(${formId})">
 <input type="button" value="リセット" onclick="pageReload()">
 </form>
 <!-- 単語置換：ここまで -->`;
@@ -1423,6 +1512,7 @@ function closeListIfNeeded(ctx) {
     ctx.s.listRoot = [];
 }
 
+// tableを閉じる
 function closeTableIfNeeded(ctx) {
     if (!ctx.s.inTable) return;
 
@@ -1443,17 +1533,6 @@ function closeTableIfNeeded(ctx) {
     ctx.s.tableHasHeader = false;
 }
 
-
-function pushBreak(ctx) {
-    const box = ctx.s.currentBox();
-    if (box) {
-        box.buffer.push("<br>");
-    } else {
-        ctx.s.body.push("<br>");
-    }
-}
-
-
 // BOXを閉じる
 function closeBoxUntilLevel(ctx, targetLevel) {
     while (ctx.s.boxStack.length) {
@@ -1466,11 +1545,19 @@ function closeBoxUntilLevel(ctx, targetLevel) {
     }
 }
 
+// 改行の制御
+function pushBreak(ctx) {
+    const box = ctx.s.currentBox();
+    if (box) {
+        box.buffer.push("<br>");
+    } else {
+        ctx.s.body.push("<br>");
+    }
+}
 
-// iframe 内アンカークリック時のスクロール制御
-// - 親ページを iframe の位置までスクロール
-// - iframe 内で対象IDへスクロール
 
+
+// iframe 内アンカークリック時のスクロール制御 ※プレビュー用
 function setupAnchorNavigation(win, doc) {
     doc.addEventListener("click", e => {
         const link = e.target.closest('a[href^="#"]');
@@ -1500,5 +1587,4 @@ function setupAnchorNavigation(win, doc) {
 
     });
 }
-
 

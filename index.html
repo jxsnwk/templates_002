@@ -8,17 +8,17 @@
 <link rel="stylesheet" href="assets/css/parts.css">
 <script src="assets/js/parts.js"></script>
 </head>
-<body oncopy="rubyToggle()">
+<body oncopy="rubyToggle()" onload="countText()">
 
-<header>
+<header id="header">
 <h1 class="title">シナリオタイトル</h1>
-<p>冒頭記述用。<br>トレーラーなどがあればここに記載するとよいかもしれません。</p>
+<p>ヘッダー記載用。<br>トレーラー文などがあればここに記載するとよいかもしれません。</p>
 </header>
 
 <main class="layout-2col">
 
 <nav class="mokuji" id="mokuji">
-  <button class="mokuji-hamburger" onclick="toggleMokuji()">☰</button>
+  <button class="mokuji-hamburger" onclick="toggleMokuji()"><span></span></button>
   
 <!-- コピペ時ふりがなON/OFFパーツ：ここから -->
 <div class="toggle_button">
@@ -28,20 +28,11 @@
 <!-- コピペ時ふりがなON/OFFパーツ：ここまで -->
   <ul class="mokuji-list">
   
-<li class="mokuji-item mokuji-node lv1">
-  <div class="mokuji-row">
-    <button class="mokuji-toggle"></button>
-    <a href="#1">PL情報</a>
-  </div>
-  <ul>
-    
-<li class="mokuji-item lv2">
+<li class="mokuji-item lv1">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#1-1">シナリオ概要</a>
+    <a href="#1">PL情報</a>
   </div>
-</li>
-  </ul>
 </li>
 <li class="mokuji-item mokuji-node lv1">
   <div class="mokuji-row">
@@ -53,44 +44,50 @@
 <li class="mokuji-item lv2">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-1">テキスト表示例</a>
+    <a href="#2-1">シナリオHTMLファイルの配布時注意点</a>
   </div>
 </li>
 <li class="mokuji-item lv2">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-2">リスト/リンク</a>
+    <a href="#2-2">テキスト表示例</a>
   </div>
 </li>
 <li class="mokuji-item lv2">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-3">画像</a>
+    <a href="#2-3">リスト/リンク</a>
+  </div>
+</li>
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#2-4">画像</a>
   </div>
 </li>
 <li class="mokuji-item mokuji-node lv2">
   <div class="mokuji-row">
     <button class="mokuji-toggle"></button>
-    <a href="#2-4">装飾BOX系/テーブル</a>
+    <a href="#2-5">装飾BOX系/テーブル</a>
   </div>
   <ul>
     
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-4-1">装飾BOX</a>
+    <a href="#2-5-1">装飾BOX</a>
   </div>
 </li>
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-4-2">ワンクリックコピペ装飾BOX</a>
+    <a href="#2-5-2">ワンクリックコピペ装飾BOX</a>
   </div>
 </li>
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-4-3">折り畳みBOX</a>
+    <a href="#2-5-3">折り畳みBOX</a>
   </div>
 </li>
   </ul>
@@ -98,20 +95,20 @@
 <li class="mokuji-item mokuji-node lv2">
   <div class="mokuji-row">
     <button class="mokuji-toggle"></button>
-    <a href="#2-5">装飾カード/テーブル</a>
+    <a href="#2-6">装飾カード/テーブル</a>
   </div>
   <ul>
     
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-5-1">装飾カード</a>
+    <a href="#2-6-1">装飾カード</a>
   </div>
 </li>
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-5-2">テーブル</a>
+    <a href="#2-6-2">テーブル</a>
   </div>
 </li>
   </ul>
@@ -119,7 +116,7 @@
 <li class="mokuji-item lv2">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-6">見出し</a>
+    <a href="#2-7">見出し</a>
   </div>
 </li>
   </ul>
@@ -161,13 +158,6 @@
   </div>
   <ul>
     
-<li class="mokuji-item mokuji-node lv2">
-  <div class="mokuji-row">
-    <button class="mokuji-toggle"></button>
-    <a href="#4-1">禁止事項/許可事項</a>
-  </div>
-  <ul>
-    
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
@@ -180,54 +170,45 @@
     <a href="#4-1-2">OK 許可していること</a>
   </div>
 </li>
-  </ul>
-</li>
 <li class="mokuji-item lv2">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
     <a href="#4-2">"Template by Jaxson"の削除について</a>
   </div>
 </li>
-<li class="mokuji-item lv2">
-  <div class="mokuji-row">
-    <span class="mokuji-dummy"></span>
-    <a href="#4-3">HTMLファイルDL後の使い方</a>
-  </div>
-</li>
   </ul>
 </li>
   </ul>
 </nav>
-<article class="content">
+<article class="content" id="content">
 
 <h1 id="1">PL情報</h1>
-<br>
-<div class="info-box box4" >
-<div class="box-title">情報</div>
+<div class="info-box box1" >
+<div class="box-title">シナリオ概要</div>
 <div class="box-body">
 
 <div class="info-item">
-  <div class="info-label">プレイ人数</div>
+  <div class="info-label"><span class="icon face b"></span>プレイ人数</div>
   <div class="info-value"><span>2〜4人</span></div>
 </div>
 
 <div class="info-item">
-  <div class="info-label">プレイ時間</div>
+  <div class="info-label"><span class="icon clock b"></span>プレイ時間</div>
   <div class="info-value"><span>3時間程度</span></div>
 </div>
 
 <div class="info-item">
-  <div class="info-label">傾向</div>
+  <div class="info-label"><span class="icon trend b"></span>傾向</div>
   <div class="info-value"><span>現代日本舞台、島クローズド</span></div>
 </div>
 
 <div class="info-item">
-  <div class="info-label">推奨技能</div>
+  <div class="info-label"><span class="icon bag b"></span>推奨技能</div>
   <div class="info-value"><span>〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉</span></div>
 </div>
 </div></div>
 <br>
-<h2 id="1-1">シナリオ概要</h2>
+<br>
 <p>{PC苗字}{PC名前}の自宅に届いた招待状。<br>それは、知人のフルート奏者の誕生パーティー開催を知らせるものだった。<br>そうして{NPC苗字}{NPC名前}とともに訪れた孤島の洋館は、台風の来訪で外界と閉ざされることとなる。</p>
 <br>
 <p>探偵、隠し財産の噂に、島に伝わるわらべ歌。<br>何も起きないはずもなく。<br>果たして、聴こえた不気味なフルートの音色が<ruby>誘<rt>いざな</rt></ruby>う先は……。</p>
@@ -235,20 +216,86 @@
 <p>という感じで使えます。</p>
 <br>
 <br>
+<br>
+<br>
 <h1 id="2">これは何？</h1>
 <p>これはシナリオHTMLのテンプレート、及び、テキストをもとにHTMLを生成してくれる補助ツールです。<br>よろしければご活用ください。<br>システムはクトゥルフ神話TRPGを想定していますが、用語などを変更いただくことで他のシステムのシナリオにも使用できます。</p>
 <br>
-<p>以下のサンプルサイトで挙動をご確認いただけます。<br>テンプレート：　<a href="https://jxsnwk.github.io/templates_002/" target="_blank">https://jxsnwk.github.io/templates_002/</a><br>HTML生成ツール：　<a href="https://jxsnwk.github.io/templates_002/generator.html" target="_blank">https://jxsnwk.github.io/templates_002/generator.html</a></p>
+<p>▼以下のサンプルサイトで挙動をご確認いただけます。<br><a href="https://jxsnwk.github.io/templates_002/" target="_blank">https://jxsnwk.github.io/templates_002/</a></p>
 <br>
-<p>利用規約の詳細は<a href="#4" >こちらをご覧ください</a>。</p>
-<br>
-<br>
+<p>▼生成ツールはこちらで挙動をご確認いただけます。　<br><a href="https://jxsnwk.github.io/templates_002/generator.html" target="_blank">https://jxsnwk.github.io/templates_002/generator.html</a><br>※<a href="https://jxsnwk.github.io/templates_002/動作確認用テキスト.txt" target="_blank">動作確認用テキスト</a>をシナリオHTML生成ツールに貼り付けることで、サンプル生成プレビュー可能です。</p>
 <br>
 <br>
-<h2 id="2-1">テキスト表示例</h2>
-<p>本文はこのように表示されます。<br>その他装飾は以下の通りです。</p>
+<p>利用規約の詳細は<a href="#4">こちらをご覧ください</a>。</p>
 <br>
-<p><strong>太字</strong>　<span class="underline">下線</span>　<ruby>漢字<rt>ふりがな</rt></ruby></p>
+<br>
+<br>
+<br>
+<h2 id="2-1">シナリオHTMLファイルの配布時注意点</h2>
+<p>生成＆ダウンロードしたシナリオHTMLファイル単体だと、<span class="underline">スタイル等が適用されません</span>。</p>
+<br>
+<p>1. 貴方の配布予定のフォルダ内に、ダウンロードしたシナリオHTMLを配置して、<br>2. 同じフォルダに同梱のassetsを丸ごと移動orコピーするようにしてください。</p>
+<br>
+<p>最終的に、配布したいHTMLがassetsフォルダのある場所と同階層に置かれていたらOKです。<br><img class="sc-img" src="assets/img/sample2.png" alt="シナリオHTML出力後の使い方"></p>
+<br>
+<br>
+<p>▼配布時同梱【不要】ファイル<br>以下はツール関連で使用しているファイルです。シナリオやテンプレート配布時には削除してください。</p>
+<br>
+
+<ul class="list level-1">
+
+<li>
+シナリオHTML生成ツール関連ファイル
+
+<ul class="list level-2">
+
+<li>
+シナリオHTML生成ツール.html
+
+</li>
+
+<li>
+generator/js/generator.js
+
+</li>
+
+<li>
+generator/css/generator.css
+
+</li>
+
+</ul>
+</li>
+
+<li>
+サンプル画像
+
+<ul class="list level-2">
+
+<li>
+assets/img/sample.png
+
+</li>
+
+<li>
+assets/img/sample2.png
+
+</li>
+
+</ul>
+</li>
+
+</ul>
+<br>
+<br>
+<br>
+<br>
+<h2 id="2-2">テキスト表示例</h2>
+<p>本文はこのように表示されます。<br>本文本文本文本文本文本文本文本文本文本文<br>本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文</p>
+<br>
+<p>その他装飾は以下の通りです。</p>
+<br>
+<p><strong>太字</strong>　<span class="underline">下線</span>　<ruby>漢字<rt>ふりがな</rt></ruby>　アイコン<span class="icon face b"></span><br><span class="bg-red">装飾テキスト</span>　<span class="bg-blue">装飾テキスト</span>　<span class="bg1">装飾テキスト</span></p>
 <br>
 <div class="left">
 左寄せ<br>
@@ -269,14 +316,14 @@
 <br>
 <p>脚注<sup class="footnote-ref" id="footnote-ref-1" data-label="1st" data-txt="脚注定義に書いた、ID対応する脚注が表示されます。">[1]</sup><br>脚注の数字は自動で採番されます。オンマウス<sup class="footnote-ref" id="footnote-ref-2" data-label="2nd" data-txt="ある程度長々書くと表示時に改行されます。本文本文本文本文本文本文本文本文本文本文。本文本文。">[2]</sup>で脚注が表示されます。</p>
 <br>
-<p>脚注定義は次のように書きます/表示されます。</p>
+<p>脚注定義は次のように書くことで表示されます。</p>
 <a href="#footnote-ref-1" id="footnote1" class="footnote-def">[1]</a>： 脚注定義に書いた、ID対応する脚注が表示されます。<br>
 <a href="#footnote-ref-2" id="footnote2" class="footnote-def">[2]</a>： ある程度長々書くと表示時に改行されます。本文本文本文本文本文本文本文本文本文本文。本文本文。<br>
 <br>
 <br>
 <br>
 <br>
-<h2 id="2-2">リスト/リンク</h2>
+<h2 id="2-3">リスト/リンク</h2>
 
 <ul class="list level-1">
 
@@ -326,21 +373,21 @@
 </ul>
 <br>
 <br>
-<p>アンカーの設置はこんなかんじ<span id="anchor-id"></span>で書きます。</p>
+<p><span id="anchor-id1"></span><br>アンカーの設置はこんなかんじ<span id="anchor-id2"></span>で書きます。</p>
 <br>
-<p><a href="https://" target="_blank">URLリンク</a><br>別窓で開きます。</p>
+<p><a href="https://jxsn-wk.booth.pm/items/7900600" target="_blank">URLリンク</a><br><a href="https://jxsn-wk.booth.pm/items/7900600" target="_blank">https://jxsn-wk.booth.pm/items/7900600</a><br>別窓で開きます。</p>
 <br>
-<p><a href="#anchor-id" >アンカーリンク</a><br>いわゆるページ内遷移のリンクです。「#」始まりかどうかで判断しています。</p>
+<p><a href="#anchor-id1">アンカーリンク</a><br>いわゆるページ内遷移のリンクです。「#」始まりかどうかで判断しています。</p>
 <br>
 <br>
-<h2 id="2-3">画像</h2>
+<h2 id="2-4">画像</h2>
 <p>こんな感じで表示できます。<br>画像ファイルはassets/img下に配置した上で、ファイル名を指定して使用します。<br><img class="sc-img" src="assets/img/sample.png" alt="サンプル画像名"></p>
 <br>
 <br>
 <br>
 <br>
-<h2 id="2-4">装飾BOX系/テーブル</h2>
-<h3 id="2-4-1">装飾BOX</h3>
+<h2 id="2-5">装飾BOX系/テーブル</h2>
+<h3 id="2-5-1">装飾BOX</h3>
 <div class="deco-box box1" >
 <div class="box-title">装飾BOX1 見出し</div>
 <div class="box-body">
@@ -366,8 +413,33 @@
 装飾BOX3 本文<br>
 </div></div>
 <br>
+<div class="deco-box box4" >
+<div class="box-title">装飾BOX4 見出し</div>
+<div class="box-body">
+装飾BOX4 本文<br>
+</div></div>
 <br>
-<h3 id="2-4-2">ワンクリックコピペ装飾BOX</h3>
+<div class="deco-box box5" >
+<div class="box-title">装飾BOX5 見出し</div>
+<div class="box-body">
+装飾BOX5 本文<br>
+</div></div>
+<br>
+<div class="deco-box box5" >
+<div class="box-title">〈目星〉</div>
+<div class="box-body">
+ddddd→d5というように、省略した書き方もできます。<br>
+<br>
+<span class="bg-red">成功</span>：<br>
+床の色が一部異なることに気付く。地下への隠し扉があるようだ。<br>
+<br>
+<span class="bg-blue">失敗</span>：<br>
+腐食した床に足を取られ、そのまま転倒してしまう。負傷により耐久力-1d3。<br>
+床下にはスペースがあり、どうやら地下室が広がっているようだ。<br>
+</div></div>
+<br>
+<br>
+<h3 id="2-5-2">ワンクリックコピペ装飾BOX</h3>
 <div class="copy-box box1" data-copy onclick="copyBox(this)">
 <div class="box-title">ワンクリックコピペができる装飾BOX 見出し</div>
 <div class="box-body">
@@ -383,9 +455,16 @@
 </div></div>
 <br>
 <br>
-<h3 id="2-4-3">折り畳みBOX</h3>
+<h3 id="2-5-3">折り畳みBOX</h3>
 <details class="fold-box box1">
-<summary class="fold-summary box-title">折り畳みBOX 見出し</summary>
+<summary class="fold-summary box-title">折り畳みBOX1 見出し</summary>
+<div class="box-body">
+折り畳みBOX 本文<br>
+本文本文本文本文<br>
+</div></details>
+<br>
+<details class="fold-box box2">
+<summary class="fold-summary box-title">折り畳みBOX2 見出し</summary>
 <div class="box-body">
 折り畳みBOX 本文<br>
 本文本文本文本文<br>
@@ -393,11 +472,62 @@
 <br>
 <br>
 <br>
-<h2 id="2-5">装飾カード/テーブル</h2>
-<h3 id="2-5-1">装飾カード</h3>
+<br>
+<h2 id="2-6">装飾カード/テーブル</h2>
+<h3 id="2-6-1">装飾カード</h3>
 <p>「ラベル: 値」で各項目を記述できます。</p>
 <br>
-<div class="info-box box4" >
+<div class="info-box box1" >
+<div class="box-title">シナリオ概要</div>
+<div class="box-body">
+
+<div class="info-item">
+  <div class="info-label"><span class="icon face b"></span>プレイ人数</div>
+  <div class="info-value"><span>2〜4人</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label"><span class="icon clock b"></span>プレイ時間</div>
+  <div class="info-value"><span>3時間程度</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label"><span class="icon trend b"></span>傾向</div>
+  <div class="info-value"><span>現代日本舞台、島クローズド</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label"><span class="icon bag b"></span>推奨技能</div>
+  <div class="info-value"><span>〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉</span></div>
+</div>
+</div></div>
+<br>
+<div class="info-box box2" >
+<div class="box-title">シナリオ概要</div>
+<div class="box-body">
+
+<div class="info-item">
+  <div class="info-label"><span class="icon face w"></span>プレイ人数</div>
+  <div class="info-value"><span>2〜4人</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label"><span class="icon clock w"></span>プレイ時間</div>
+  <div class="info-value"><span>3時間程度</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label"><span class="icon trend w"></span>傾向</div>
+  <div class="info-value"><span>現代日本舞台、島クローズド</span></div>
+</div>
+
+<div class="info-item">
+  <div class="info-label"><span class="icon bag w"></span>推奨技能</div>
+  <div class="info-value"><span>〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉</span></div>
+</div>
+</div></div>
+<br>
+<div class="info-box box3" >
 <div class="box-title">シナリオ概要</div>
 <div class="box-body">
 
@@ -423,8 +553,7 @@
 </div></div>
 <br>
 <br>
-<br>
-<h3 id="2-5-2">テーブル</h3>
+<h3 id="2-6-2">テーブル</h3>
 <p>ヘッダー行は末尾に「h」、セル強調は冒頭に「~」をつけることで装飾できます。</p>
 <br>
 <table class="sc-table"><thead><tr><th>ヘッダー</th><th>ヘッダー</th><th>ヘッダー</th></tr></thead><tbody>
@@ -436,7 +565,7 @@
 <br>
 <br>
 <br>
-<h2 id="2-6">見出し</h2>
+<h2 id="2-7">見出し</h2>
 <p>見出しは以下のように装飾されます。</p>
 <br>
 <h1 id="3">見出し1</h1>
@@ -445,15 +574,26 @@
 <h4 id="3-1-1-1">見出し4</h4>
 <h5 id="3-1-1-1-1">見出し5</h5>
 <br>
-<p>見出しから自動で目次を生成することができます。<br>目次作成時、どこまで階層を記述するかはプルダウン選択で設定します。</p>
+<p>「目次自動採番」にチェックを入れると、見出しから自動で目次を生成することができます。<br>目次作成時、どこまで階層を記述するかはプルダウン選択で設定します。</p>
 <br>
 <br>
 <br>
 <br>
 <h2 id="3-2">おまけ</h2>
-<p>クトゥルフ神話TRPGシナリオ用の権利表示タグ<br><!-- ライセンス表示パーツ：ここから -->
+<p>クトゥルフ神話TRPGシナリオ用の権利表示タグ<br>
+     <!-- ライセンス表示パーツ：ここから -->
     <div class="licence"></div>
     <!-- ライセンス表示パーツ：ここまで --></p>
+<br>
+<p>本文の文字数をなんとなくカウントして表示するタグ<br>
+     <!-- 文字数カウント表示パーツ：ここから -->
+    <span class="countTextDisp"></span>
+    <!-- 文字数カウント表示パーツ：ここまで --></p>
+<br>
+<br>
+<p>アイコンまとめ<br><span class="icon face b"></span>　<span class="icon clock b"></span>　<span class="icon trend b"></span>　<span class="icon bag b"></span>　<span class="icon search b"></span>　<span class="icon clip b"></span><br><span class="icon hukidasi b"></span>　<span class="icon info b"></span>　<span class="icon warning b"></span>　<span class="icon idea b"></span>　<span class="icon user b"></span>　<span class="icon flag b"></span></p>
+<br>
+<p>末尾の「b」を「w」に変更すると白線になります。<br>アイコンのデザインは<a href="https://css.gg/" target="_blank">700+ CSS Icons</a>からお借りしています。<br>大元はcssで設定しているものなので、cssを変更・追記することでアイコンを追加することも可能です。</p>
 <br>
 <br>
 <br>
@@ -463,14 +603,11 @@
 <br>
 <p>本テンプレートは、HTML形式のシナリオ配布がもっとお気軽にできるようになるといいなあ、の考えのもと作られています。<br>プログラム知識の少ない人間の作った拙いものですので、色々とお目こぼしいただけますと幸いです。</p>
 <br>
-<p>以下のサンプルサイトで挙動をご確認いただけます。<br>テンプレート：　<a href="https://jxsnwk.github.io/templates_002/" target="_blank">https://jxsnwk.github.io/templates_002/</a><br>HTML生成ツール：　<a href="https://jxsnwk.github.io/templates_002/generator.html" target="_blank">https://jxsnwk.github.io/templates_002/generator.html</a></p>
-<br>
 <br>
 <p>質問や不明点は X(旧Twitter)：<a href="https://x.com/Jxsn_wk" target="_blank">@Jxsn_wk</a> までお問い合わせください。</p>
 <br>
 <br>
 <br>
-<h2 id="4-1">禁止事項/許可事項</h2>
 <h3 id="4-1-1">NG 禁止事項</h3>
 <div class="deco-box box1" >
 
@@ -576,7 +713,7 @@
 </li>
 
 <li>
-【テンプレート】の公開及び配布の場合、以下の条件を満たしていれば削除してもよい
+【テンプレートやツール】の公開及び配布の場合、以下の条件を満たしていれば削除してもよい
 
 <ul class="list level-2">
 
@@ -594,7 +731,7 @@
 <div class="box-body">
 <div class="small">
 記載例）<br>
-改変元テンプレート：　https://jxsn-wk.booth.pm/items/4385648<br>
+改変元テンプレート：　<a href="https://jxsn-wk.booth.pm/items/7900600" target="_blank">https://jxsn-wk.booth.pm/items/7900600</a><br>
 </div>
 </div></div>
 </div></div>
@@ -602,12 +739,8 @@
 <br>
 <br>
 <br>
-<h2 id="4-3">HTMLファイルDL後の使い方</h2>
-<p>ダウンロードしたHTMLファイル単体だと、スタイル等が適用されません。<br>①貴方の配布予定のフォルダ内に、ダウンロードしたシナリオHTMLを配置して、<br>②同じフォルダに同梱のassetsを丸ごと移動orコピーするようにしてください。</p>
-<br>
-<p>最終的に、配布したいHTMLが以下の状態になっていたらOKです。<br><img class="sc-img" src="assets/img/sample2.png" alt="シナリオHTML出力後の使い方"></p>
-<br>
-<p>generatorとついているファイルはHTML生成ツール関連ファイルなので、シナリオやテンプレート配布時に同梱は不要です。<br>assets/imgフォルダ内「sample.png」「sample2.png」はサンプル用なので、これも配布時に削除して構いません。</p>
+<h5 id="4-2-1-1-1">更新履歴</h5>
+<p>2026/01/26 【ver.1.0.0】作成</p>
 <br>
 <br>
 <br>
@@ -615,10 +748,10 @@
 </article>
 </main>
 
-<footer class="center">
+<footer id="footer" class="center">
 Template by <a href="https://jxsn-wk.booth.pm/" target="_blank">Jaxson</a>
 </footer>
-<div id="page_top"><a href="#"></a></div>
+<div id="page_top"><a href="#header"></a></div>
 
 </body>
 </html>

@@ -1,6 +1,12 @@
+@charset "UTF-8";
 /* assets/css/deco.css */
+/* 装飾用CSS：
+背景や文字色など変更する場合、こちらを変更します。 */
 
-/* リンクの設定 */
+/* =========================================================
+  文字装飾
+========================================================= */
+/* ---- リンクの設定 ---- */
 a {
   color: #666;
 }
@@ -11,6 +17,27 @@ a:hover {
 }
 
 
+/* ---- ふりがな ---- */
+ruby rt {
+  font-size: 0.6em;
+  color: #555;
+}
+
+
+/* ---- 下線 ---- */
+.underline {
+  text-decoration: underline;
+  text-decoration-color: #d9e7f7;
+  /* 色 */
+  text-decoration-thickness: 6px;
+  /* 線の太さ */
+  text-underline-offset: -6px;
+}
+
+
+/* =========================================================
+  見出し
+========================================================= */
 /* ---- 見出し ---- */
 h1,
 h2,
@@ -46,7 +73,7 @@ h2 {
   margin-bottom: 1rem;
   border-left: 4px solid #1f2933;
   border-bottom: 1px solid #ddd;
-  background: none;
+  background: linear-gradient(transparent 70%, #e8ebef 70%);
 }
 
 h3 {
@@ -62,6 +89,16 @@ h3:before {
 }
 
 h4 {
+  width: 270px;
+  font-size: 1rem;
+  color: #FFF;
+  background-color: #1f2933;
+  display: block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 0 50px 50px 0;
+}
+
+h5 {
   font-size: 1rem;
   display: inline-block;
   padding: 0.35rem 0.7rem;
@@ -78,6 +115,10 @@ hr {
   border-top: 2px dashed #ddd;
 }
 
+
+/* =========================================================
+  目次
+========================================================= */
 /* ---- 目次 ---- */
 .mokuji a {
   color: #333;
@@ -94,6 +135,10 @@ hr {
   }
 }
 
+
+/* =========================================================
+  装飾BOX
+========================================================= */
 /* ---- 装飾BOX ---- */
 .box-title {
   padding: 0.5rem 1rem;
@@ -146,8 +191,53 @@ hr {
   background: #eef4fb;
 }
 
+/* 装飾BOX:装飾4 */
+.deco-box.box4 {
+  border: none;
+}
+
+.deco-box.box4>.box-title {
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  position: relative;
+  padding-left: 2.2em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.deco-box.box4>.box-title::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M18.319 14.4326C20.7628 11.2941 20.542 6.75347 17.6569 3.86829C14.5327 0.744098 9.46734 0.744098 6.34315 3.86829C3.21895 6.99249 3.21895 12.0578 6.34315 15.182C9.22833 18.0672 13.769 18.2879 16.9075 15.8442C16.921 15.8595 16.9351 15.8745 16.9497 15.8891L21.1924 20.1317C21.5829 20.5223 22.2161 20.5223 22.6066 20.1317C22.9971 19.7412 22.9971 19.1081 22.6066 18.7175L18.364 14.4749C18.3493 14.4603 18.3343 14.4462 18.319 14.4326ZM16.2426 5.28251C18.5858 7.62565 18.5858 11.4246 16.2426 13.7678C13.8995 16.1109 10.1005 16.1109 7.75736 13.7678C5.41421 11.4246 5.41421 7.62565 7.75736 5.28251C10.1005 2.93936 13.8995 2.93936 16.2426 5.28251Z' fill='currentColor'/%3E%3C/svg%3E");
+  position: absolute;
+  left: 0.6em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1em;
+  opacity: 0.85;
+  width: 18px;
+  height: 18px;
+}
+
+
+/* 装飾BOX:装飾5 */
+.deco-box.box5 {
+  position: relative;
+  margin: 2em 0 0 0;
+  padding: 0.3em 1em 0.1em 1em;
+  border: solid 2px #1f2933;
+}
+
+.deco-box.box5>.box-title {
+  position: absolute;
+  display: inline-block;
+  top: -2em;
+  left: -10px;
+  font-size: 0.95em;
+  background: #1f2933;
+  color: #FFF;
+}
+
 
 /* ---- コピー装飾BOX ---- */
+/* 共通 */
 .copy-box {
   position: relative;
 }
@@ -157,7 +247,7 @@ hr {
 }
 
 .copy-box::after {
-  content: "📋";
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath d='M8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13H15.9595C16.5118 13 16.9595 12.5523 16.9595 12C16.9595 11.4477 16.5118 11 15.9595 11H8Z' fill='currentColor'/%3E%3Cpath d='M8.04053 15.0665C7.48824 15.0665 7.04053 15.5142 7.04053 16.0665C7.04053 16.6188 7.48824 17.0665 8.04053 17.0665H16C16.5523 17.0665 17 16.6188 17 16.0665C17 15.5142 16.5523 15.0665 16 15.0665H8.04053Z' fill='currentColor'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5 3C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H5ZM7 5H5L5 19H19V5H17V6C17 7.65685 15.6569 9 14 9H10C8.34315 9 7 7.65685 7 6V5ZM9 5V6C9 6.55228 9.44772 7 10 7H14C14.5523 7 15 6.55228 15 6V5H9Z' fill='currentColor'/%3E%3C/svg%3E");
   position: absolute;
   top: 6px;
   right: 6px;
@@ -173,11 +263,9 @@ hr {
 
 .copy-box:active {
   opacity: 0.5;
-  box-shadow: 0 0 0 2px rgba(0, 150, 255, 0.3);
 }
 
 /* コピー装飾BOX:装飾1 */
-/* 共通 */
 .copy-box.box1 {
   border-radius: 5px;
   overflow: hidden;
@@ -215,16 +303,13 @@ hr {
 }
 
 
-
 /* ---- 折り畳みBOX ---- */
 .fold-box {
-  border: 1px solid #aaa;
   border-radius: 4px;
 }
 
 .fold-box .box-title {
   padding: 0.75rem 1rem;
-  background: #f3f3f3;
   cursor: pointer;
   font-weight: bold;
 }
@@ -235,6 +320,7 @@ hr {
 }
 
 .fold-box.box1>.box-title {
+  padding: 0.75rem 1rem;
   background: #f3f3f3;
 }
 
@@ -242,67 +328,141 @@ hr {
   background-color: #FFF;
 }
 
-/* ---- シナリオ情報BOX ---- */
-.info-box {
-  max-width: 400px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin: 0 auto;
+/* 折り畳みBOX:装飾2 */
+.fold-box.box2 {
+  padding: 0;
+}
+
+.fold-box.box2>.box-title {
+  padding: 0;
+}
+
+.fold-box.box2>.box-body {
+  padding: 0;
 }
 
 
-/* ボックスタイトル */
+/* ---- 装飾カード ---- */
+/* 共通 */
+.info-box {
+  max-width: 500px;
+  padding: 20px;
+}
+
 .info-box>.box-title {
-  text-align: center;
   padding: 0 0.7rem;
 }
 
 /* info-item 行 */
-.info-box .info-item {
+.info-box>.box-body .info-item {
   display: flex;
   justify-content: space-between;
   padding: 4px 0;
-  border-bottom: 1px solid #eee;
 }
 
-.info-box .info-item:last-child {
+.info-box>.box-body .info-item:last-child {
   border-bottom: none;
 }
 
-
 /* ラベルと値 */
-.info-box .info-label,
-.info-box .info-value {
+.info-box>.box-body .info-label,
+.info-box>.box-body .info-value {
   padding: 4px 10px;
 }
 
-.info-box .info-label {
+.info-box>.box-body .info-label {
   white-space: nowrap;
 }
 
-.info-box .info-value {
-  background-color: #d9e7f7;
+.info-box>.box-body .info-value {
+  background-color: #fff;
+}
+
+
+/* 装飾カード:装飾1 */
+.info-box.box1 {
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* info-item 行 */
+.info-box.box1>.box-body .info-item {
+  border-bottom: 1px solid #eee;
+}
+
+.info-box.box1>.box-body .info-item:last-child {
+  border-bottom: none;
+}
+
+/* ラベルと値 */
+.info-box.box1>.box-body .info-label,
+.info-box.box1>.box-body .info-value {
+  padding: 4px 10px;
+}
+
+.info-box.box1>.box-body .info-value {
+  background-color: #e8ebef;
   border-radius: 8px;
 }
 
 
-
-/* ---- ふりがな ---- */
-ruby rt {
-  font-size: 0.6em;
-  color: #555;
+/* 装飾カード:装飾2 */
+.info-box.box2 {
+  width: 70%;
+  max-width: 500px;
+  margin: 0;
+  padding: 0;
 }
 
-/* ---- 下線 ---- */
-.underline {
-  text-decoration: underline;
-  text-decoration-color: #d9e7f7;
-  /* 色 */
-  text-decoration-thickness: 6px;
-  /* 線の太さ */
-  text-underline-offset: -6px;
+/* info-item */
+.info-box.box2>.box-body .info-item {
+  display: flex;
+  border-bottom: 2px solid #FFF;
+  padding: 1px 0;
+}
+
+.info-box.box2>.box-body .info-item:last-child {
+  border-bottom: none;
+}
+
+/* ラベル */
+.info-box.box2>.box-body .info-label {
+  position: relative;
+  width: 30%;
+  background-color: #666;
+  color: #FFF;
+  text-align: center;
+  padding: 5px 2px;
+  flex-shrink: 0;
+}
+
+.info-box.box2>.box-body .info-label::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 10px);
+  right: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #666;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+/* 値 */
+.info-box.box2>.box-body .info-value {
+  width: 70%;
+  background-color: #f4f4f4;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* span 前提の微調整 */
+.info-box.box2>.box-body .info-value span {
+  display: block;
 }
 
 
@@ -331,6 +491,9 @@ ruby rt {
 }
 
 
+/* =========================================================
+  上へスクロール
+========================================================= */
 /* ---- 上へスクロール ---- */
 #page_top {
   background: #666;
@@ -343,4 +506,121 @@ ruby rt {
 #page_top a::before {
   content: '▲';
   color: #fff;
+}
+
+
+/* =========================================================
+  アイコン
+========================================================= */
+.icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  mask-position: center;
+
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+
+  vertical-align: middle;
+  margin-right: 0.4em;
+}
+
+/* アイコンの色 */
+.icon.b {
+  color: #444;
+}
+
+.icon.w {
+  color: #fff;
+}
+
+/* 人の顔 */
+.icon.face {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 14C9.55228 14 10 13.5523 10 13C10 12.4477 9.55228 12 9 12C8.44771 12 8 12.4477 8 13C8 13.5523 8.44771 14 9 14Z'/%3E%3Cpath d='M16 13C16 13.5523 15.5523 14 15 14C14.4477 14 14 13.5523 14 13C14 12.4477 14.4477 12 15 12C15.5523 12 16 12.4477 16 13Z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 11.1637 19.8717 10.3574 19.6337 9.59973C18.7991 9.82556 17.9212 9.94604 17.0152 9.94604C13.2921 9.94604 10.0442 7.91139 8.32277 4.89334C5.75469 6.22486 4 8.90751 4 12C4 16.4183 7.58172 20 12 20Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: mask-image;
+}
+
+/* 時計 */
+.icon.clock {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5.45887 2L1 6.01478L2.33826 7.50107L6.79713 3.48629L5.45887 2Z'/%3E%3Cpath d='M11 8H13V12H16V14H11V8Z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12ZM5 12C5 8.13401 8.13401 5 12 5C15.866 5 19 8.13401 19 12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12Z'/%3E%3Cpath d='M18.5411 2L23 6.01478L21.6617 7.50107L17.2029 3.48629L18.5411 2Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: mask-image;
+}
+
+/* 傾向 */
+.icon.trend {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M1.41421 16.4322L0 15.018L7.07107 7.94693L13.435 14.3109L17.6777 10.0682L15.9353 8.32587L22.6274 6.53271L20.8343 13.2248L19.0919 11.4825L13.435 17.1393L7.07107 10.7754L1.41421 16.4322Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: mask-image;
+}
+
+/* 鞄 */
+.icon.bag {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M17 5.5H20C21.1046 5.5 22 6.39543 22 7.5V19.5C22 20.6046 21.1046 21.5 20 21.5H4C2.89543 21.5 2 20.6046 2 19.5V7.5C2 6.39543 2.89543 5.5 4 5.5H7C7 3.84315 8.34315 2.5 10 2.5H14C15.6569 2.5 17 3.84315 17 5.5ZM14 4.5H10C9.44772 4.5 9 4.94772 9 5.5H15C15 4.94772 14.5523 4.5 14 4.5ZM20 7.5H4V9.5H20V7.5ZM4 19.5V11.5H7V13.5H11V11.5H13V13.5H17V11.5H20V19.5H4Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: mask-image;
+}
+
+/* 虫眼鏡 */
+.icon.search {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M18.319 14.4326C20.7628 11.2941 20.542 6.75347 17.6569 3.86829C14.5327 0.744098 9.46734 0.744098 6.34315 3.86829C3.21895 6.99249 3.21895 12.0578 6.34315 15.182C9.22833 18.0672 13.769 18.2879 16.9075 15.8442C16.921 15.8595 16.9351 15.8745 16.9497 15.8891L21.1924 20.1317C21.5829 20.5223 22.2161 20.5223 22.6066 20.1317C22.9971 19.7412 22.9971 19.1081 22.6066 18.7175L18.364 14.4749C18.3493 14.4603 18.3343 14.4462 18.319 14.4326ZM16.2426 5.28251C18.5858 7.62565 18.5858 11.4246 16.2426 13.7678C13.8995 16.1109 10.1005 16.1109 7.75736 13.7678C5.41421 11.4246 5.41421 7.62565 7.75736 5.28251C10.1005 2.93936 13.8995 2.93936 16.2426 5.28251Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: mask-image;
+}
+
+/* クリップボード */
+.icon.clip {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13H15.9595C16.5118 13 16.9595 12.5523 16.9595 12C16.9595 11.4477 16.5118 11 15.9595 11H8Z'/%3E%3Cpath d='M8.04053 15.0665C7.48824 15.0665 7.04053 15.5142 7.04053 16.0665C7.04053 16.6188 7.48824 17.0665 8.04053 17.0665H16C16.5523 17.0665 17 16.6188 17 16.0665C17 15.5142 16.5523 15.0665 16 15.0665H8.04053Z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M5 3C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H5ZM7 5H5L5 19H19V5H17V6C17 7.65685 15.6569 9 14 9H10C8.34315 9 7 7.65685 7 6V5ZM9 5V6C9 6.55228 9.44772 7 10 7H14C14.5523 7 15 6.55228 15 6V5H9Z'/%3E%3C/svg%3E");
+  -webkit-mask-image: mask-image;
+}
+
+/* ふきだし */
+.icon.hukidasi {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 9H7V7H17V9Z'/%3E%3Cpath d='M7 13H17V11H7V13Z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2 18V2H22V18H16V22H14C11.7909 22 10 20.2091 10 18H2ZM12 16V18C12 19.1046 12.8954 20 14 20V16H20V4H4V16H12Z'/%3E%3C/svg%3E");
+}
+
+/* インフォメーション */
+.icon.info {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M11 10.9794C11 10.4271 11.4477 9.97937 12 9.97937C12.5523 9.97937 13 10.4271 13 10.9794V16.9794C13 17.5317 12.5523 17.9794 12 17.9794C11.4477 17.9794 11 17.5317 11 16.9794V10.9794Z'/%3E%3Cpath d='M12 6.05115C11.4477 6.05115 11 6.49886 11 7.05115C11 7.60343 11.4477 8.05115 12 8.05115C12.5523 8.05115 13 7.60343 13 7.05115C13 6.49886 12.5523 6.05115 12 6.05115Z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z'/%3E%3C/svg%3E");
+}
+
+/* びっくりマーク */
+.icon.warning {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 6C12.5523 6 13 6.44772 13 7V13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13V7C11 6.44772 11.4477 6 12 6Z'/%3E%3Cpath d='M12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16Z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z'/%3E%3C/svg%3E");
+}
+
+/* 電球 */
+.icon.idea {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4 9C4 11.9611 5.60879 14.5465 8 15.9297V15.9999C8 18.2091 9.79086 19.9999 12 19.9999C14.2091 19.9999 16 18.2091 16 15.9999V15.9297C18.3912 14.5465 20 11.9611 20 9C20 4.58172 16.4183 1 12 1C7.58172 1 4 4.58172 4 9ZM16 13.4722C17.2275 12.3736 18 10.777 18 9C18 5.68629 15.3137 3 12 3C8.68629 3 6 5.68629 6 9C6 10.777 6.7725 12.3736 8 13.4722L10 13.4713V16C10 17.1045 10.8954 17.9999 12 17.9999C13.1045 17.9999 14 17.1045 14 15.9999V13.4713L16 13.4722Z'/%3E%3Cpath d='M10 21.0064V21C10.5883 21.3403 11.2714 21.5351 12 21.5351C12.7286 21.5351 13.4117 21.3403 14 21V21.0064C14 22.111 13.1046 23.0064 12 23.0064C10.8954 23.0064 10 22.111 10 21.0064Z'/%3E%3C/svg%3E");
+}
+
+/* ユーザー */
+.icon.user {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5C14.2091 5 16 6.79086 16 9ZM14 9C14 10.1046 13.1046 11 12 11C10.8954 11 10 10.1046 10 9C10 7.89543 10.8954 7 12 7C13.1046 7 14 7.89543 14 9Z'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1ZM3 12C3 14.0902 3.71255 16.014 4.90798 17.5417C6.55245 15.3889 9.14627 14 12.0645 14C14.9448 14 17.5092 15.3531 19.1565 17.4583C20.313 15.9443 21 14.0524 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12ZM12 21C9.84977 21 7.87565 20.2459 6.32767 18.9878C7.59352 17.1812 9.69106 16 12.0645 16C14.4084 16 16.4833 17.1521 17.7538 18.9209C16.1939 20.2191 14.1881 21 12 21Z'/%3E%3C/svg%3E");
+}
+
+/* 旗 */
+.icon.flag {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12.4388 7L14.8387 4H7V10H14.8387L12.4388 7ZM19 12H7V22H5V2H19L15 7L19 12Z'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+  span装飾
+========================================================= */
+span.bg-red {
+  background: #ec8d8d;
+  padding: 0.22rem;
+}
+
+span.bg-blue {
+  background: #9fbdff;
+  padding: 0.22rem;
+}
+
+span.bg1 {
+  color: #FFF;
+  background: #bb0000;
+  padding: 0.22rem;
 }

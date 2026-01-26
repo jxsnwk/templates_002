@@ -1,4 +1,13 @@
 @charset "UTF-8";
+
+/* assets/css/parts.css */
+/* 機能パーツCSS：
+機能パーツ関連のデザインをまとめています。 */
+
+
+/* =========================================================
+  コピペ時ふりがなONOFFボタン
+========================================================= */
 /* コピペ時ふりがなONOFFボタン */
 .toggle_input {
   position: absolute;
@@ -25,6 +34,7 @@
           box-sizing: border-box;
 }
 
+/* OFF時 */
 .toggle_label:after {
   text-align: center;
   line-height: 1.5rem; /* ON/OFF文字の表示位置が縦中央からズレる場合、ここを調整 */
@@ -41,6 +51,7 @@
   transition: 0.4s;
 }
 
+/* ON時 */
 .toggle_input:checked + .toggle_label {
   border: 2px solid #4BD865;
 }
@@ -68,6 +79,10 @@
   display: none;
 }
 
+
+/* =========================================================
+  ライセンス表示
+========================================================= */
 /*ライセンス表示*/
 .licence {
   font-size: 9px;
@@ -87,6 +102,10 @@
 	"PUBLISHED BY KADOKAWA CORPORATION　「クトゥルフ神話TRPG」「新クトゥルフ神話TRPG」";
 }
 
+
+/* =========================================================
+  単語置換
+========================================================= */
 /* 単語置換 */
 form.change input {
   border-radius: 8px;
@@ -99,18 +118,21 @@ form.change input[type="button"] {
   padding: 5px 8px;
   border: none;
   color: #FFF;
-  background: -webkit-gradient(linear, left bottom, left top, from(#ccc), to(#eee));
+  /* background: -webkit-gradient(linear, left bottom, left top, from(#ccc), to(#eee)); */
   background: linear-gradient(to top, #ccc 0%, #eee 100%);
   -webkit-box-shadow: inset 1px 1px 1px #FFF;
           box-shadow: inset 1px 1px 1px #FFF;
 }
 
 form.change input[type="button"]:active {
-  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#ccc));
+  /* background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#ccc)); */
   background: linear-gradient(to bottom, #aaa 0%, #ccc 100%);
 }
 
 
+/* =========================================================
+  コピペ時トースト
+========================================================= */
 /* コピペ装飾BOXトースト */
 .copy-toast {
   position: fixed;
@@ -135,4 +157,22 @@ form.change input[type="button"]:active {
 .copy-toast.show {
   opacity: 1;
   transform: translateY(-6px);
+}
+
+
+/* =========================================================
+  脚注
+========================================================= */
+/* 脚注参照 */
+.footnote-tooltip {
+  position: absolute;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  font-size: 0.85em;
+  border-radius: 4px;
+  max-width: min(400px, 90vw);
+  white-space: pre-wrap;
+  z-index: 9999;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }

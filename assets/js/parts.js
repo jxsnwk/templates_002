@@ -2,10 +2,19 @@
 // 文字数カウント
 // ------------------------------
 function countText() {
-	var result = document.getElementById("countTextarea").innerText.replace(/\s+/g, '').length;
-	result = Math.round(result / 100) * 100; // 100文字単位で丸める
-	document.getElementById("countResult").innerText = '約' + result + '文字';
+	const contentElement = document.getElementById("content").innerText;
+	const contentText = contentElement.replace(/\s+/g, '').length;
+	const roundedCharacterCount = Math.round(contentText / 100) * 100; // 100文字単位で丸める
+
+	// 文字数カウント要素がある場合、文字数を表示する
+	const displayText = '約' + roundedCharacterCount + '文字';
+
+	// class="countTextDisp" をすべて取得して表示
+	document.querySelectorAll('.countTextDisp').forEach(el => {
+		el.textContent = displayText;
+	});
 }
+
 
 // ------------------------------
 // コピペ時ふりがなON/OFF
@@ -71,32 +80,37 @@ function rubyOn(kakkoFlg) {
 	}, 100);
 }
 
+
 // ------------------------------
 // 単語置換
 // ------------------------------
-
-function changeWord() {
-	var arrDefWord = new Array();
-	var arrWord = new Array();
+function changeWord(formId = 1) {
+	// フォームID
+	const changeFormId = 'change' + formId;
 
 	// 置換対象の単語数（決定・リセットボタン分を数から引くため-2する）	
-	var wordCount = document.change.getElementsByTagName('input').length - 2;
+	var wordCount = document.getElementById(changeFormId).getElementsByTagName('input').length - 2;
 
 	for (var i = 0; i < wordCount; i++) {
-		var inputItem = document.change.getElementsByTagName('input').item(i);
-		arrDefWord[i] = inputItem.placeholder;// 置換前
-		arrWord[i] = inputItem.value;// 置換後
-	}
+		// 置換前後の値を取得
+		var inputItem = document.getElementById(changeFormId).getElementsByTagName('input').item(i);
+		const defaultWord = inputItem.placeholder;// 置換前
+		const changedWord = inputItem.value;// 置換後
 
-	// 置換処理
-	for (var i = 0; i < wordCount; i++) {
-		if (arrWord[i]) {
-			document.body.innerHTML = document.body.innerHTML.split(arrDefWord[i]).join(arrWord[i]);
+		// 置換処理
+		if (changedWord) {
+			// 置換後の値がある場合、本文文字列を置換
+			document.body.innerHTML = document.body.innerHTML.split(defaultWord).join(changedWord);
 		}
-		document.change.getElementsByTagName('input').item(i).setAttribute('placeholder', arrWord[i] ? arrWord[i] : arrDefWord[i]);
-		document.change.getElementsByTagName('input').item(i).setAttribute('value', arrWord[i]);
+
+		// form内input プレースホルダの置換 空の場合はデフォルト値に
+		document.getElementById(changeFormId).getElementsByTagName('input').item(i).setAttribute('placeholder', changedWord ? changedWord : defaultWord);
+		// form内input 値の置換
+		document.getElementById(changeFormId).getElementsByTagName('input').item(i).setAttribute('value', changedWord);
+
 	}
 }
+
 
 // ------------------
 // ページ更新
@@ -109,7 +123,10 @@ function pageReload() {
 // 目次開閉制御
 // ------------------
 document.addEventListener("click", e => {
-	const toggle = e.target.closest(".mokuji-toggle");
+	// a 要素を押していたら何もしない
+    if (e.target.closest("a")) return;
+
+	const toggle = e.target.closest(".mokuji-item");
 	if (!toggle) return;
 
 	const li = toggle.closest(".mokuji-node");
@@ -131,7 +148,7 @@ function toggleMokuji() {
 function copyBox(el) {
 	// ルビの処理
 	const rubyToggle = document.querySelector('input#toggle');
-	
+
 	if (!rubyToggle) {
 		// 要素がない場合 何もしない
 	} else if (rubyToggle.checked === true) {
@@ -177,51 +194,51 @@ function showCopyToast(targetEl) {
 // 脚注ツールチップ
 // ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".footnote-ref").forEach(ref => {
-        let tooltip;
+	document.querySelectorAll(".footnote-ref").forEach(ref => {
+		let tooltip;
 
-        ref.addEventListener("mouseenter", () => {
-            if (tooltip) return;
+		ref.addEventListener("mouseenter", () => {
+			if (tooltip) return;
 
-            tooltip = document.createElement("div");
-            tooltip.className = "footnote-tooltip";
-            tooltip.textContent = ref.dataset.txt || "";
-            tooltip.style.visibility = "hidden";
+			tooltip = document.createElement("div");
+			tooltip.className = "footnote-tooltip";
+			tooltip.textContent = ref.dataset.txt || "";
+			tooltip.style.visibility = "hidden";
 
-            document.body.appendChild(tooltip);
+			document.body.appendChild(tooltip);
 
-            const refRect = ref.getBoundingClientRect();
-            const ttRect = tooltip.getBoundingClientRect();
+			const refRect = ref.getBoundingClientRect();
+			const ttRect = tooltip.getBoundingClientRect();
 
-            const margin = 8;
-            const vw = window.innerWidth;
-            const vh = window.innerHeight;
+			const margin = 8;
+			const vw = window.innerWidth;
+			const vh = window.innerHeight;
 
-            let left = refRect.left + window.scrollX;
-            let top = refRect.bottom + window.scrollY + 6;
+			let left = refRect.left + window.scrollX;
+			let top = refRect.bottom + window.scrollY + 6;
 
-            // 右はみ出し回避
-            if (left + ttRect.width > vw - margin) {
-                left = vw - ttRect.width - margin;
-            }
-            // 左はみ出し回避
-            if (left < margin) {
-                left = margin;
-            }
+			// 右はみ出し回避
+			if (left + ttRect.width > vw - margin) {
+				left = vw - ttRect.width - margin;
+			}
+			// 左はみ出し回避
+			if (left < margin) {
+				left = margin;
+			}
 
-            // 下はみ出し回避 上に出す
-            if (top + ttRect.height > window.scrollY + vh - margin) {
-                top = refRect.top + window.scrollY - ttRect.height - 6;
-            }
+			// 下はみ出し回避 上に出す
+			if (top + ttRect.height > window.scrollY + vh - margin) {
+				top = refRect.top + window.scrollY - ttRect.height - 6;
+			}
 
-            tooltip.style.left = left + "px";
-            tooltip.style.top = top + "px";
-            tooltip.style.visibility = "visible";
-        });
+			tooltip.style.left = left + "px";
+			tooltip.style.top = top + "px";
+			tooltip.style.visibility = "visible";
+		});
 
-        ref.addEventListener("mouseleave", () => {
-            tooltip?.remove();
-            tooltip = null;
-        });
-    });
+		ref.addEventListener("mouseleave", () => {
+			tooltip?.remove();
+			tooltip = null;
+		});
+	});
 });
