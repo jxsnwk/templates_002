@@ -28,66 +28,69 @@
 <!-- コピペ時ふりがなON/OFFパーツ：ここまで -->
   <ul class="mokuji-list">
   
-<li class="mokuji-item lv1">
+<li class="mokuji-item mokuji-node lv1">
   <div class="mokuji-row">
-    <span class="mokuji-dummy"></span>
+    <button class="mokuji-toggle"></button>
     <a href="#1">PL情報</a>
   </div>
+  <ul>
+    
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#1-1">これは何？</a>
+  </div>
+</li>
+<li class="mokuji-item lv2">
+  <div class="mokuji-row">
+    <span class="mokuji-dummy"></span>
+    <a href="#1-2">シナリオHTMLファイル配布時の注意点</a>
+  </div>
+</li>
+  </ul>
 </li>
 <li class="mokuji-item mokuji-node lv1">
   <div class="mokuji-row">
     <button class="mokuji-toggle"></button>
-    <a href="#2">これは何？</a>
+    <a href="#2">テキスト表示例</a>
   </div>
   <ul>
     
 <li class="mokuji-item lv2">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-1">シナリオHTMLファイルの配布時注意点</a>
+    <a href="#2-1">リスト/リンク</a>
   </div>
 </li>
 <li class="mokuji-item lv2">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-2">テキスト表示例</a>
-  </div>
-</li>
-<li class="mokuji-item lv2">
-  <div class="mokuji-row">
-    <span class="mokuji-dummy"></span>
-    <a href="#2-3">リスト/リンク</a>
-  </div>
-</li>
-<li class="mokuji-item lv2">
-  <div class="mokuji-row">
-    <span class="mokuji-dummy"></span>
-    <a href="#2-4">画像</a>
+    <a href="#2-2">画像</a>
   </div>
 </li>
 <li class="mokuji-item mokuji-node lv2">
   <div class="mokuji-row">
     <button class="mokuji-toggle"></button>
-    <a href="#2-5">装飾BOX系/テーブル</a>
+    <a href="#2-3">装飾BOX系/テーブル</a>
   </div>
   <ul>
     
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-5-1">装飾BOX</a>
+    <a href="#2-3-1">装飾BOX</a>
   </div>
 </li>
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-5-2">ワンクリックコピペ装飾BOX</a>
+    <a href="#2-3-2">ワンクリックコピペ装飾BOX</a>
   </div>
 </li>
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-5-3">折り畳みBOX</a>
+    <a href="#2-3-3">折り畳みBOX</a>
   </div>
 </li>
   </ul>
@@ -95,20 +98,20 @@
 <li class="mokuji-item mokuji-node lv2">
   <div class="mokuji-row">
     <button class="mokuji-toggle"></button>
-    <a href="#2-6">装飾カード/テーブル</a>
+    <a href="#2-4">装飾カード/テーブル</a>
   </div>
   <ul>
     
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-6-1">装飾カード</a>
+    <a href="#2-4-1">装飾カード</a>
   </div>
 </li>
 <li class="mokuji-item lv3">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-6-2">テーブル</a>
+    <a href="#2-4-2">テーブル</a>
   </div>
 </li>
   </ul>
@@ -116,7 +119,7 @@
 <li class="mokuji-item lv2">
   <div class="mokuji-row">
     <span class="mokuji-dummy"></span>
-    <a href="#2-7">見出し</a>
+    <a href="#2-5">見出し</a>
   </div>
 </li>
   </ul>
@@ -218,7 +221,7 @@
 <br>
 <br>
 <br>
-<h1 id="2">これは何？</h1>
+<h2 id="1-1">これは何？</h2>
 <p>これはシナリオHTMLのテンプレート、及び、テキストをもとにHTMLを生成してくれる補助ツールです。<br>よろしければご活用ください。<br>システムはクトゥルフ神話TRPGを想定していますが、用語などを変更いただくことで他のシステムのシナリオにも使用できます。</p>
 <br>
 <p>▼以下のサンプルサイトで挙動をご確認いただけます。<br><a href="https://jxsnwk.github.io/templates_002/" target="_blank">https://jxsnwk.github.io/templates_002/</a></p>
@@ -231,7 +234,7 @@
 <br>
 <br>
 <br>
-<h2 id="2-1">シナリオHTMLファイルの配布時注意点</h2>
+<h2 id="1-2">シナリオHTMLファイル配布時の注意点</h2>
 <p>生成＆ダウンロードしたシナリオHTMLファイル単体だと、<span class="underline">スタイル等が適用されません</span>。</p>
 <br>
 <p>1. 貴方の配布予定のフォルダ内に、ダウンロードしたシナリオHTMLを配置して、<br>2. 同じフォルダに同梱のassetsを丸ごと移動orコピーするようにしてください。</p>
@@ -239,58 +242,9 @@
 <p>最終的に、配布したいHTMLがassetsフォルダのある場所と同階層に置かれていたらOKです。<br><img class="sc-img" src="assets/img/sample2.png" alt="シナリオHTML出力後の使い方"></p>
 <br>
 <br>
-<p>▼配布時同梱【不要】ファイル<br>以下はツール関連で使用しているファイルです。シナリオやテンプレート配布時には削除してください。</p>
-<br>
-
-<ul class="list level-1">
-
-<li>
-シナリオHTML生成ツール関連ファイル
-
-<ul class="list level-2">
-
-<li>
-シナリオHTML生成ツール.html
-
-</li>
-
-<li>
-generator/js/generator.js
-
-</li>
-
-<li>
-generator/css/generator.css
-
-</li>
-
-</ul>
-</li>
-
-<li>
-サンプル画像
-
-<ul class="list level-2">
-
-<li>
-assets/img/sample.png
-
-</li>
-
-<li>
-assets/img/sample2.png
-
-</li>
-
-</ul>
-</li>
-
-</ul>
 <br>
 <br>
-<br>
-<br>
-<h2 id="2-2">テキスト表示例</h2>
+<h1 id="2">テキスト表示例</h1>
 <p>本文はこのように表示されます。<br>本文本文本文本文本文本文本文本文本文本文<br>本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文</p>
 <br>
 <p>その他装飾は以下の通りです。</p>
@@ -323,7 +277,7 @@ assets/img/sample2.png
 <br>
 <br>
 <br>
-<h2 id="2-3">リスト/リンク</h2>
+<h2 id="2-1">リスト/リンク</h2>
 
 <ul class="list level-1">
 
@@ -380,14 +334,14 @@ assets/img/sample2.png
 <p><a href="#anchor-id1">アンカーリンク</a><br>いわゆるページ内遷移のリンクです。「#」始まりかどうかで判断しています。</p>
 <br>
 <br>
-<h2 id="2-4">画像</h2>
+<h2 id="2-2">画像</h2>
 <p>こんな感じで表示できます。<br>画像ファイルはassets/img下に配置した上で、ファイル名を指定して使用します。<br><img class="sc-img" src="assets/img/sample.png" alt="サンプル画像名"></p>
 <br>
 <br>
 <br>
 <br>
-<h2 id="2-5">装飾BOX系/テーブル</h2>
-<h3 id="2-5-1">装飾BOX</h3>
+<h2 id="2-3">装飾BOX系/テーブル</h2>
+<h3 id="2-3-1">装飾BOX</h3>
 <div class="deco-box box1" >
 <div class="box-title">装飾BOX1 見出し</div>
 <div class="box-body">
@@ -439,7 +393,7 @@ ddddd→d5というように、省略した書き方もできます。<br>
 </div></div>
 <br>
 <br>
-<h3 id="2-5-2">ワンクリックコピペ装飾BOX</h3>
+<h3 id="2-3-2">ワンクリックコピペ装飾BOX</h3>
 <div class="copy-box box1" data-copy onclick="copyBox(this)">
 <div class="box-title">ワンクリックコピペができる装飾BOX 見出し</div>
 <div class="box-body">
@@ -455,7 +409,7 @@ ddddd→d5というように、省略した書き方もできます。<br>
 </div></div>
 <br>
 <br>
-<h3 id="2-5-3">折り畳みBOX</h3>
+<h3 id="2-3-3">折り畳みBOX</h3>
 <details class="fold-box box1">
 <summary class="fold-summary box-title">折り畳みBOX1 見出し</summary>
 <div class="box-body">
@@ -473,8 +427,8 @@ ddddd→d5というように、省略した書き方もできます。<br>
 <br>
 <br>
 <br>
-<h2 id="2-6">装飾カード/テーブル</h2>
-<h3 id="2-6-1">装飾カード</h3>
+<h2 id="2-4">装飾カード/テーブル</h2>
+<h3 id="2-4-1">装飾カード</h3>
 <p>「ラベル: 値」で各項目を記述できます。</p>
 <br>
 <div class="info-box box1" >
@@ -553,7 +507,7 @@ ddddd→d5というように、省略した書き方もできます。<br>
 </div></div>
 <br>
 <br>
-<h3 id="2-6-2">テーブル</h3>
+<h3 id="2-4-2">テーブル</h3>
 <p>ヘッダー行は末尾に「h」、セル強調は冒頭に「~」をつけることで装飾できます。</p>
 <br>
 <table class="sc-table"><thead><tr><th>ヘッダー</th><th>ヘッダー</th><th>ヘッダー</th></tr></thead><tbody>
@@ -565,7 +519,7 @@ ddddd→d5というように、省略した書き方もできます。<br>
 <br>
 <br>
 <br>
-<h2 id="2-7">見出し</h2>
+<h2 id="2-5">見出し</h2>
 <p>見出しは以下のように装飾されます。</p>
 <br>
 <h1 id="3">見出し1</h1>

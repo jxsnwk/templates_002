@@ -15,7 +15,7 @@ https://jxsnwk.github.io/templates_002/
 https://jxsnwk.github.io/templates_002/generator.html
 
 
-質問や不明点はTwitter：@Jxsn_wkまでお問い合わせください。
+質問や不明点は X(旧Twitter)：@Jxsn_wk までお問い合わせください。
 
 
 
@@ -50,7 +50,17 @@ https://jxsn-wk.booth.pm/items/7900600
 
 
 
-## シナリオHTMLファイルの配布時注意点
+## シナリオHTML生成ツール使用時の注意点
+- 読み込むファイルはテキストファイル（.txt）のみを想定しています。
+- ツール側で、テキストデータの保存等はしていません。
+-- 長時間ツールを使用していると、作業データが消えてしまう恐れがあります。
+-- こまめにテキストの控えを取っていただくのがよいかと存じます。
+-- 事前にテキストファイルを準備して、ツールの入力欄は微調整に使う、くらいがよさそうです。
+
+
+
+
+## シナリオHTMLファイル配布時の注意点
 生成＆ダウンロードしたシナリオHTMLファイル単体だと、スタイル等が適用されません。
 
 1. 貴方の配布予定のフォルダ内に、ダウンロードしたシナリオHTMLを配置して、
@@ -59,26 +69,14 @@ https://jxsn-wk.booth.pm/items/7900600
 最終的に、配布したいHTMLがassetsフォルダのある場所と同階層に置かれていたらOKです。
 
 
-▼配布時同梱【不要】ファイル
-以下はツール関連で使用しているファイルです。シナリオやテンプレート配布時には削除してください。
-
-- シナリオHTML生成ツール関連ファイル
--- シナリオHTML生成ツール.html
--- generator/js/generator.js
--- generator/css/generator.css
-
-- サンプル画像
--- assets/img/sample.png
--- assets/img/sample2.png
-
-
 
 
 # 同梱物
 templates_002
-├─ 画面サンプル画像.png
-├─ 動作確認用テキスト.txt
 ├─ README.txt
+├─ 動作確認用テキスト.txt
+├─ 画面サンプル画像.png
+├─ テンプレートサンプル.html
 ├─ シナリオHTML生成ツール.html
 ├─ generator
 │  ├─ js
@@ -100,15 +98,19 @@ templates_002
 
 
 ### 関連ファイル：シナリオHTML生成ツール
-generatorとついているファイルが該当します。
 シナリオ・テンプレート配布時に同封は【不要】です。
+- README.txt
+- 動作確認用テキスト.txt
+- 画面サンプル画像.png
+- テンプレートサンプル.html
 - シナリオHTML生成ツール.html
+
 - generator/js/generator.js
 - generator/css/generator.css
 
 
 ### 関連ファイル：HTMLテンプレート
-assetsディレクトリ内のファイルが該当します。
+assetsフォルダ内のファイルが該当します。
 シナリオ・テンプレート配布時に同封が【必要】です。
 - assets/css/deco.css
 - assets/css/layout.css
