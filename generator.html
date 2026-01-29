@@ -8,33 +8,43 @@
 </head>
 
 <body>
-  
+
   <div class="layout" id="layout">
 
     <!-- 上：入力 -->
     <div class="editor">
 
       <!-- 出力ファイル名 -->
-      <label>
+      <div class="flex">
+        <!-- <label>
         出力ファイル名：
         <input type="text" id="outputName" value="scenario">
-      </label>
+      </label> -->
+
+        <label>
+          シナリオ名：
+          <input type="text" id="scenarioName" placeholder="シナリオ名">
+        </label>
+
+      </div>
 
       <!-- 目次階層 -->
-      <label>
-        目次階層：
-        <select id="mokujiLevel">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3" selected>3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </label>
+        <label>
+          目次階層：
+          <select id="mokujiLevel">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+
+
 
       <!-- 機能ON/OFF -->
-      <div class="flgcheckbox">
+      <div class="flex">
         <label>
           <input type="checkbox" id="mokujiAutoNumFlg">
           目次自動採番　　
@@ -55,7 +65,8 @@
         <input type="file" id="txtInput" accept=".txt">
         <button id="generateBtn">HTMLダウンロード</button>
         　　プレビュー：現在<button id="togglePreviewBtn">ON</button>
-        　<div class="demotxt"><a href="動作確認用テキスト.txt" target="_blank">▼記法サンプルTXT</a>　　<a href="https://jxsn-wk.booth.pm/items/7900600" target="_blank">▼ツール配布元(Booth)</a></div>
+        　<div class="demotxt"><a href="動作確認用テキスト.txt" target="_blank">▼記法サンプルTXT</a>　　<a
+            href="https://jxsn-wk.booth.pm/items/7900600" target="_blank">▼ツール配布元(Booth)</a></div>
       </div>
 
       <textarea id="textEditor" placeholder="ここにTXT内容を入力または編集

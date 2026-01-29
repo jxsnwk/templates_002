@@ -76,11 +76,11 @@ select:focus {
 }
 
 /* ===== checkbox ===== */
-.flgcheckbox {
+.flex {
   display: flex;
   gap: 16px;        /* ラベル同士の間隔 */
   align-items: center;
-  flex-wrap: wrap; /* 画面が狭いとき折り返したいなら */
+  flex-wrap: wrap; /* 画面が狭いとき折り返す */
 }
 
 input[type="checkbox"] {

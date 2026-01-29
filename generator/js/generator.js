@@ -14,6 +14,7 @@
 // -------------------------------
 const runtimeConfig = {
     outputName: "scenario",
+    scenarioName: "シナリオ名",
     mokujiLevel: 3,
     furigana: false,
     tango: false,
@@ -82,7 +83,8 @@ const editor = document.getElementById("textEditor");
 // -------------------------------
 // 設定UI
 // -------------------------------
-const outputNameInput = document.getElementById("outputName");
+// const outputNameInput = document.getElementById("outputName");
+const scenarioNameInput = document.getElementById("scenarioName");
 const mokujiSelect = document.getElementById("mokujiLevel");
 const mokujiAutoNumChk = document.getElementById("mokujiAutoNumFlg");
 const furiganaChk = document.getElementById("furiganaOnOffFlg");
@@ -98,7 +100,8 @@ const tangoChk = document.getElementById("tangoHenkanFlg");
 // 設定同期
 // -------------------------------
 function syncConfig() {
-    runtimeConfig.outputName = outputNameInput.value || "scenario";
+    // runtimeConfig.outputName = outputNameInput.value || "scenario";
+    runtimeConfig.scenarioName = scenarioNameInput.value || "シナリオ名";
     runtimeConfig.mokujiLevel = Number(mokujiSelect.value);
     runtimeConfig.mokujiAutoNum = mokujiAutoNumChk.checked;
     runtimeConfig.furigana = furiganaChk.checked;
@@ -106,7 +109,7 @@ function syncConfig() {
 }
 
 // 設定変更時は即プレビュー更新
-[outputNameInput, mokujiSelect, mokujiAutoNumChk, furiganaChk, tangoChk].forEach(el =>
+[scenarioNameInput, mokujiSelect, mokujiAutoNumChk, furiganaChk, tangoChk].forEach(el =>
     el.addEventListener("change", updatePreview)
 );
 
@@ -276,7 +279,7 @@ function buildHtml(txt, prev = false) {
     runtimeConfig.features.countText = false;
 
     // タイトル・ヘッダーの処理
-    const titleBlock = extractBlock(txt, "title");
+    // const titleBlock = extractBlock(txt, "title");
     const headerBlock = extractBlock(txt, "header");
 
     txt = txt
@@ -289,7 +292,7 @@ function buildHtml(txt, prev = false) {
     const state = new ParseState();
 
 
-    state.title = titleBlock || "";
+    state.title = runtimeConfig.scenarioName || "";
     state.headerHtml = parseHeaderBlock(headerBlock);
 
     const ctx = createContext(state);
@@ -323,7 +326,6 @@ function buildHtml(txt, prev = false) {
     // 目次階層構築
     const mokujiTree = buildMokujiTree(state.mokuji);
     return buildDocument(
-        state.title,
         htmlBody,
         state.mokuji,
         state.headerHtml
@@ -1336,14 +1338,14 @@ function escapeRegExp(str) {
 // HTMLドキュメント生成
 // =====================================================
 
-function buildDocument(title, body, mokuji, headerHtml) {
+function buildDocument(body, mokuji, headerHtml) {
 
     return `<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${escapeHtml(title)}</title>
+<title>${escapeHtml(runtimeConfig.scenarioName)}</title>
 <link rel="stylesheet" href="assets/css/layout.css">
 <link rel="stylesheet" href="assets/css/deco.css">
 <link rel="stylesheet" href="assets/css/parts.css">
@@ -1352,7 +1354,7 @@ function buildDocument(title, body, mokuji, headerHtml) {
 <body${runtimeConfig.furigana ? ` oncopy="rubyToggle()"` : ""}${runtimeConfig.features.countText ? ` onload="countText()"` : ""}>
 
 <header id="header">
-<h1 class="title">${escapeHtml(title)}</h1>
+<h1 class="title">${escapeHtml(runtimeConfig.scenarioName)}</h1>
 ${headerHtml || ""}
 </header>
 
