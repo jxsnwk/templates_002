@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>装飾ルール</title>
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/deco.css">
+    <link rel="stylesheet" href="../assets/css/parts.css">
+    <script src="../assets/js/parts.js"></script>
+    <style>
+        body {
+            font-size: 70%;
+            margin: 10px;
+        }
+
+        table.format-rule {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 4rem;
+        }
+
+        table.format-rule .rule>th {
+            color: #FFF;
+            background-color: #1f2933;
+        }
+
+        table.format-rule th,
+        table.format-rule td {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        table.format-rule td.before {
+            font-family: monospace;
+        }
+
+        table.format-rule td img {
+            width: 100%;
+        }
+
+        .rule-name {
+            background: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+    <table class="format-rule">
+        <tbody>
+
+            <tr class="rule">
+                <th>ルール</th>
+                <th>装飾前</th>
+                <th>装飾後</th>
+            </tr>
+            
+
+            <tr class="rule">
+                <td class="rule-name">ヘッダー</td>
+                <td class="before">
+                    [header]<br>
+                    テキスト<br>
+                    [/header]<br>
+                </td>
+                <td class="after">
+                    テキスト<br>
+                    <br><span style="color:#888; font-size: 60%;">※[header][/header]で囲んだテキストがヘッダー内に挿入されます。</span>
+                </td>
+            </tr>
+
+
+            <tr class="rule">
+                <td class="rule-name">太字</td>
+                <td class="before">**太字**</td>
+                <td class="after"><strong>太字</strong></td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">下線</td>
+                <td class="before">__下線__</td>
+                <td class="after"><span class="underline">下線</span></td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">ふりがな</td>
+                <td class="before">｜漢字《ふりがな》</td>
+                <td class="after"><ruby>漢字<rt>ふりがな</rt></ruby></td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">改行</td>
+                <td class="before">aaa&br;bbb</td>
+                <td class="after">
+                    aaa<br>
+                    bbb<br>
+                </td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">半角スペース</td>
+                <td class="before">&ampnbsp;</td>
+                <td class="after">
+                    &nbsp;
+                </td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">装飾テキスト</td>
+                <td class="before">
+                    [span bg-red]装飾テキスト1[/span]<br>
+                    [span bg-blue]装飾テキスト2[/span]<br>
+                    [span bg1]装飾テキスト3[/span]
+                </td>
+                <td class="after">
+                    <span class="bg-red">装飾テキスト1</span><br>
+                    <span class="bg-blue">装飾テキスト2</span><br>
+                    <span class="bg1">装飾テキスト3</span>
+                </td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">脚注</td>
+                <td class="before">
+                    [^sample]<br>
+                    <br>
+                    [^sample]: 脚注定義
+                </td>
+                <td class="after">
+                    脚注<sup class="footnote-ref" id="footnote-ref-1" data-label="sample" data-txt="脚注定義">[1]</sup><br>
+                    <br>
+                    <a href="#footnote-ref-1" id="footnote1" class="footnote-def">[1]</a>： 脚注定義<br>
+                </td>
+            </tr>
+
+
+            <tr class="rule">
+                <td class="rule-name">アイコン</td>
+                <td class="before">
+                    [icon face b]　[icon face w]<br>
+                    [icon clock b]　[icon clock w]<br>
+                    [icon trend b]　[icon trend w]<br>
+                    [icon bag b]　[icon bag w]<br>
+                    [icon search b]　[icon search w]<br>
+                    [icon clip b]　[icon clip w]<br>
+                    [icon hukidasi b]　[icon hukidasi w]<br>
+                    [icon info b]　[icon info w]<br>
+                    [icon warning b]　[icon warning w]<br>
+                    [icon idea b]　[icon idea w]<br>
+                    [icon user b]　[icon user w]<br>
+                    [icon flag b]　[icon flag w]<br>
+                    <br>
+                    デフォルト色の場合、色指定は省略可能。<br>
+                    [icon face]
+                </td>
+                <td class="after" style="background: #ccc;">
+                    <span class="icon face b"></span>　<span class="icon face w"></span><br>
+                    <span class="icon clock b"></span>　<span class="icon clock w"></span><br>
+                    <span class="icon trend b"></span>　<span class="icon trend w"></span><br>
+                    <span class="icon bag b"></span>　<span class="icon bag w"></span><br>
+                    <span class="icon search b"></span>　<span class="icon search w"></span><br>
+                    <span class="icon clip b"></span>　<span class="icon clip w"></span><br>
+                    <span class="icon hukidasi b"></span>　<span class="icon hukidasi w"></span><br>
+                    <span class="icon info b"></span>　<span class="icon info w"></span><br>
+                    <span class="icon warning b"></span>　<span class="icon warning w"></span><br>
+                    <span class="icon idea b"></span>　<span class="icon idea w"></span><br>
+                    <span class="icon user b"></span>　<span class="icon user w"></span><br>
+                    <span class="icon flag b"></span>　<span class="icon flag w"></span><br>
+                    <br>
+                    デフォルト色の場合、色指定は省略可能。<br>
+                    <span class="icon face"></span>
+                </td>
+            </tr>
+
+
+            <tr class="rule">
+                <td class="rule-name">アンカーIDの設置</td>
+                <td class="before">[[#sample-id]]</td>
+                <td class="after"><a id="sample-id"></a>
+                    <br><span style="color:#888; font-size: 60%;">※「&lt;a id="sample-id"&gt;&lt;/a&gt;」が出力されます。</span>
+                </td>
+            </tr>
+
+
+            <tr class="rule">
+                <td class="rule-name">URL</td>
+                <td class="before">
+                    https://jxsn-wk.booth.pm/items/7900600<br>
+                    [URLリンク](https://jxsn-wk.booth.pm/items/7900600)<br>
+                    [アンカーリンク](#sample-id)<br>
+                </td>
+                <td class="after">
+                    <a href="https://jxsn-wk.booth.pm/items/7900600"
+                        target="_blank">https://jxsn-wk.booth.pm/items/7900600</a><br>
+                    <a href="https://jxsn-wk.booth.pm/items/7900600" target="_blank">URLリンク</a><br>
+                    <a href="#sample-id">アンカーリンク</a><br>
+                </td>
+            </tr>
+
+
+            <tr class="rule">
+                <td class="rule-name">見出し</td>
+                <td class="before">
+                    # 見出し1<br>
+                    ## 見出し2<br>
+                    ### 見出し3<br>
+                    #### 見出し4<br>
+                    ##### 見出し5<br>
+                </td>
+                <td class="after">
+                    <h1 id="1">見出し1</h1>
+                    <h2 id="1-1">見出し2</h2>
+                    <h3 id="1-1-1">見出し3</h3>
+                    <h4 id="1-1-1-1">見出し4</h4>
+                    <h5 id="1-1-1-1-1">見出し5</h5>
+                </td>
+            </tr>
+            
+
+            <tr class="rule">
+                <td class="rule-name">罫線</td>
+                <td class="before">
+                    &hr;
+                </td>
+                <td class="after">
+                    <hr>
+                </td>
+            </tr>
+
+
+            <tr class="rule">
+                <td class="rule-name">箇条書き</td>
+                <td class="before">
+                    - リスト1<br>
+                    - リスト2<br>
+                    -- リスト2-1<br>
+                    --- リスト2-1-1<br>
+                    - リスト3<br>
+                    <br>
+                    <br>
+                    - [ ]チェックリスト1<br>
+                    - [ ]チェックリスト2<br>
+                    - [x]チェックリスト3<br>
+                </td>
+                <td class="after">
+
+                    <ul class="list level-1">
+                        <li>
+                            リスト1
+                        </li>
+                        <li>
+                            リスト2
+                            <ul class="list level-2">
+                                <li>
+                                    リスト2-1
+                                    <ul class="list level-3">
+                                        <li>
+                                            リスト2-1-1
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            リスト3
+                        </li>
+                    </ul>
+
+                    <br>
+                    <br>
+
+                    <ul class="checkbox level-1">
+                        <li>
+                            <input type="checkbox"> チェックリスト1
+                        </li>
+                        <li>
+                            <input type="checkbox"> チェックリスト2
+                        </li>
+                        <li>
+                            <input type="checkbox" checked=""> チェックリスト3
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+
+            <tr class="rule">
+                <td class="rule-name" rowspan="2">装飾BOX</td>
+                <td class="before">
+                    [d]装飾BOX1 見出し<br>
+                    装飾BOX1 本文<br>
+                    本文本文本文本文<br>
+                    [/d]<br>
+                    <br>
+                    [d]<br>
+                    見出しに記述がない場合、見出しなしの装飾BOXができます。<br>
+                    [/d]<br>
+                </td>
+                <td class="after">
+                    <div class="deco-box box1">
+                        <div class="box-title">装飾BOX1 見出し</div>
+                        <div class="box-body">
+                            装飾BOX1 本文<br>
+                            本文本文本文本文<br>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="deco-box box1">
+
+                        <div class="box-body">
+                            見出しに記述がない場合、見出しなしの装飾BOXができます。<br>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <details>
+                        <summary>詳細</summary>
+                        <table class="format-rule">
+                            <tr>
+                                <td>
+                                    [dd]装飾BOX2 見出し<br>
+                                    装飾BOX2 本文<br>
+                                    [/dd]<br>
+                                    <br>
+                                    [ddd]装飾BOX3 見出し<br>
+                                    装飾BOX3 本文<br>
+                                    [/ddd]<br>
+                                    <br>
+                                    [dddd]装飾BOX4 見出し<br>
+                                    装飾BOX4 本文<br>
+                                    [/dddd]<br>
+                                    <br>
+                                    [ddddd]装飾BOX5 見出し<br>
+                                    装飾BOX5 本文<br>
+                                    [/ddddd]<br>
+                                    <br>
+                                    [d5]〈目星〉<br>
+                                    ddddd→d5というように、省略した書き方もできます。<br>
+                                    <br>
+                                    [span bg-red]成功[/span]：<br>
+                                    床の色が一部異なることに気付く。地下への隠し扉があるようだ。<br>
+                                    <br>
+                                    [span bg-blue]失敗[/span]：<br>
+                                    腐食した床に足を取られ、そのまま転倒してしまう。負傷により耐久力-1d3。<br>
+                                    床下にはスペースがあり、どうやら地下室が広がっているようだ。<br>
+                                    [/d5]<br>
+                                </td>
+                                <td>
+
+                                    <div class="deco-box box2">
+                                        <div class="box-title">装飾BOX2 見出し</div>
+                                        <div class="box-body">
+                                            装飾BOX2 本文<br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="deco-box box3">
+                                        <div class="box-title">装飾BOX3 見出し</div>
+                                        <div class="box-body">
+                                            装飾BOX3 本文<br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="deco-box box4">
+                                        <div class="box-title">装飾BOX4 見出し</div>
+                                        <div class="box-body">
+                                            装飾BOX4 本文<br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="deco-box box5">
+                                        <div class="box-title">装飾BOX5 見出し</div>
+                                        <div class="box-body">
+                                            装飾BOX5 本文<br>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="deco-box box5">
+                                        <div class="box-title">〈目星〉</div>
+                                        <div class="box-body">
+                                            ddddd→d5というように、省略した書き方もできます。<br>
+                                            <br>
+                                            <span class="bg-red">成功</span>：<br>
+                                            床の色が一部異なることに気付く。地下への隠し扉があるようだ。<br>
+                                            <br>
+                                            <span class="bg-blue">失敗</span>：<br>
+                                            腐食した床に足を取られ、そのまま転倒してしまう。負傷により耐久力-1d3。<br>
+                                            床下にはスペースがあり、どうやら地下室が広がっているようだ。<br>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </details>
+                </td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">コピペ装飾BOX</td>
+                <td class="before">
+                    [=]ワンクリックコピペができる装飾BOX 見出し<br>
+                    ワンクリックコピペができる装飾ボックス 本文<br>
+                    [/=]<br>
+                    <br>
+                    [=]<br>
+                    見出しに記述がない場合、見出しなしの装飾BOXができます。<br>
+                    [/=]<br>
+                </td>
+                <td class="after">
+                    <div class="copy-box box1" data-copy="" onclick="copyBox(this)">
+                        <div class="box-title">ワンクリックコピペができる装飾BOX 見出し</div>
+                        <div class="box-body">
+                            ワンクリックコピペができる装飾ボックス 本文<br>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="copy-box box1" data-copy="" onclick="copyBox(this)">
+
+                        <div class="box-body">
+                            見出しに記述がない場合、見出しなしの装飾BOXができます。<br>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">折り畳みBOX</td>
+                <td class="before">
+                    [>]折り畳みBOX1 見出し<br>
+                    折り畳みBOX 本文<br>
+                    本文本文本文本文<br>
+                    [/>]<br>
+                </td>
+                <td class="after">
+                    <details class="fold-box box1">
+                        <summary class="fold-summary box-title">折り畳みBOX1 見出し</summary>
+                        <div class="box-body">
+                            折り畳みBOX 本文<br>
+                            本文本文本文本文<br>
+                        </div>
+                    </details>
+                </td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">装飾カード</td>
+                <td class="before">
+                    [i]シナリオ概要<br>
+                    プレイ人数: 2〜4人<br>
+                    プレイ時間: 3時間程度<br>
+                    傾向: 現代日本舞台、島クローズド<br>
+                    推奨技能: 〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉<br>
+                    [/i]<br>
+                    <br>
+                    [ii]シナリオ概要<br>
+                    プレイ人数: 2〜4人<br>
+                    プレイ時間: 3時間程度<br>
+                    傾向: 現代日本舞台、島クローズド<br>
+                    推奨技能: 〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉<br>
+                    [/ii]<br>
+
+                </td>
+                <td class="after">
+                    <div class="info-box box1">
+                        <div class="box-title">シナリオ概要</div>
+                        <div class="box-body">
+
+                            <div class="info-item">
+                                <div class="info-label">プレイ人数</div>
+                                <div class="info-value"><span>2〜4人</span></div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-label">プレイ時間</div>
+                                <div class="info-value"><span>3時間程度</span></div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-label">傾向</div>
+                                <div class="info-value"><span>現代日本舞台、島クローズド</span></div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-label">推奨技能</div>
+                                <div class="info-value"><span>〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="info-box box2">
+                        <div class="box-title">シナリオ概要</div>
+                        <div class="box-body">
+
+                            <div class="info-item">
+                                <div class="info-label">プレイ人数</div>
+                                <div class="info-value"><span>2〜4人</span></div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-label">プレイ時間</div>
+                                <div class="info-value"><span>3時間程度</span></div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-label">傾向</div>
+                                <div class="info-value"><span>現代日本舞台、島クローズド</span></div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-label">推奨技能</div>
+                                <div class="info-value"><span>〈目星〉〈聞き耳〉〈図書館〉〈オカルト〉</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">表</td>
+                <td class="before">
+                    | A | B | C |<br>
+                    |a|b|c|<br>
+                    <br>
+                    <br>
+                    |A|B|C|h<br>
+                    |a|b|c|<br>
+                    |d|e|f|<br>
+                    <br>
+                    <br>
+                    |~1|aaa|bbb|<br>
+                    |~2|ccc|ddd|<br>
+                </td>
+                <td class="after">
+                    <table class="sc-table">
+                        <tbody>
+                            <tr>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                            </tr>
+                            <tr>
+                                <td>a</td>
+                                <td>b</td>
+                                <td>c</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <table class="sc-table">
+                        <thead>
+                            <tr>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>C</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>a</td>
+                                <td>b</td>
+                                <td>c</td>
+                            </tr>
+                            <tr>
+                                <td>d</td>
+                                <td>e</td>
+                                <td>f</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <table class="sc-table">
+                        <tbody>
+                            <tr>
+                                <td class="em">1</td>
+                                <td>aaa</td>
+                                <td>bbb</td>
+                            </tr>
+                            <tr>
+                                <td class="em">2</td>
+                                <td>ccc</td>
+                                <td>ddd</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+
+
+            <tr class="rule">
+                <td class="rule-name">画像</td>
+                <td class="before">![サンプル画像](sample.png)</td>
+                <td class="after"><img class="sc-img" src="../assets/img/sample.png" alt="サンプル画像"></td>
+            </tr>
+
+
+            <!-- <tr class="rule">
+<td class="rule-name"></td>
+<td class="before"></td>
+<td class="after"></td>
+</tr> -->
+
+
+            <tr class="rule">
+                <td class="rule-name">クトゥルフ神話TRPGシナリオ用権利表示タグ</td>
+                <td class="before">[[権利表示]]</td>
+                <td class="after">
+                    <!-- ライセンス表示パーツ：ここから -->
+                    <div class="licence"></div>
+                    <!-- ライセンス表示パーツ：ここまで -->
+                </td>
+            </tr>
+
+            <tr class="rule">
+                <td class="rule-name">文字数カウント表示タグ</td>
+                <td class="before">[[文字数カウント]]</td>
+                <td class="after">
+                    <!-- 文字数カウント表示パーツ：ここから -->
+                    <span class="countTextDisp">約xx文字</span>
+                    <!-- 文字数カウント表示パーツ：ここまで -->
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>

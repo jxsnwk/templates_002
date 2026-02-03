@@ -181,3 +181,51 @@ textarea:focus {
 .demotxt a:hover {
   color: #aaa;
 }
+
+
+
+
+/* ===== モーダル表示 ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+  position: absolute;
+  inset: 5%;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modal-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+button.modal-close {
+  color: var(--subtext);
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 9999;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+

@@ -26,6 +26,9 @@
           <input type="text" id="scenarioName" placeholder="シナリオ名">
         </label>
 
+        <div class="demotxt">
+          <a href="動作確認用テキスト.txt" data-rule-modal>▼記法サンプルTXT</a>　　
+        </div>
       </div>
 
       <!-- 目次階層 -->
@@ -65,8 +68,10 @@
         <input type="file" id="txtInput" accept=".txt">
         <button id="generateBtn">HTMLダウンロード</button>
         　　プレビュー：現在<button id="togglePreviewBtn">ON</button>
-        　<div class="demotxt"><a href="動作確認用テキスト.txt" target="_blank">▼記法サンプルTXT</a>　　<a
-            href="https://jxsn-wk.booth.pm/items/7900600" target="_blank">▼ツール配布元(Booth)</a></div>
+        　<div class="demotxt">
+          <a href="generator/decorule.html" data-rule-modal>▼装飾ルール</a>　　
+          <a href="https://jxsn-wk.booth.pm/items/7900600" target="_blank">▼ツール配布元(Booth)</a>
+          </div>
       </div>
 
       <textarea id="textEditor" placeholder="ここにTXT内容を入力または編集
@@ -79,6 +84,16 @@
 
   <script src="generator/js/generator.js"></script>
 
+
+
+  <!-- モーダル -->
+<div id="ruleModal" class="modal">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close">×</button>
+    <iframe id="ruleFrame"></iframe>
+  </div>
+</div>
 
 </body>
 

@@ -1078,7 +1078,8 @@ function ruleDefault() {
 // =====================================================
 
 function parseInline(text, ctx) {
-    let result = escapeHtml(text);
+    // ---- エスケープ処理
+    let result = escapeHtmlForInline(text);
 
     // ---- 画像
     result = applyImage(result);
@@ -1114,6 +1115,15 @@ function parseInline(text, ctx) {
     // ---- 脚注
     result = applyFootnote(result, ctx);
 
+    return result;
+}
+
+// 文字実体参照(&br;/&hr;/&nbsp;)
+function applyCer(text) {
+    let result = text;
+    result = result.replace(/&br;/g, "<br>");
+    result = result.replace(/&hr;/g, "<hr>");
+    result = result.replace(/&nbsp;/g, "&nbsp;");
     return result;
 }
 
@@ -1375,11 +1385,64 @@ Template by <a href="https://jxsn-wk.booth.pm/" target="_blank">Jaxson</a>
 </html>`;
 }
 
+
 // エスケープ処理
 function escapeHtml(str) {
+    // ---- 通常エスケープ
     return str.replace(/[&<>]/g, c =>
         ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])
     );
+}
+
+// インライン用エスケープ処理
+function escapeHtmlForInline(str) {
+    if (!str) return str;
+
+    let result = str;
+
+    // ---- 許可する文字実体参照/タグを定義
+    const ALLOW = {
+        br: {
+            entity: /&br;/gi,
+            tag: /<br\s*\/?>/gi,
+            placeholder: "__ALLOW_BR__",
+            html: "<br>"
+        },
+        hr: {
+            entity: /&hr;/gi,
+            tag: /<hr\s*\/?>/gi,
+            placeholder: "__ALLOW_HR__",
+            html: "<hr>"
+        },
+        nbsp: {
+            entity: /&nbsp;/gi,
+            tag: null,
+            placeholder: "__ALLOW_NBSP__",
+            html: "&nbsp;"
+        }
+    };
+
+    // ---- placeholderへ退避
+    Object.values(ALLOW).forEach(def => {
+        result = result.replace(def.entity, def.placeholder);
+        // <br>等のタグも許可する場合
+        // if (def.tag) {
+        //     result = result.replace(def.tag, def.placeholder);
+        // }
+    });
+
+    // ---- 通常エスケープ
+    result = escapeHtml(result);
+
+    // ---- placeholder → HTML復元
+    Object.values(ALLOW).forEach(def => {
+        result = result.replace(
+            new RegExp(def.placeholder, "g"),
+            def.html
+        );
+    });
+
+    return result;
 }
 
 
@@ -1590,4 +1653,33 @@ function setupAnchorNavigation(win, doc) {
 
     });
 }
+
+
+// =====================================================
+// モーダル表示用
+// =====================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("ruleModal");
+  const iframe = document.getElementById("ruleFrame");
+
+  if (!modal || !iframe) return;
+
+  document.addEventListener("click", e => {
+    const link = e.target.closest("[data-rule-modal]");
+    if (!link) return;
+
+    e.preventDefault();
+    iframe.src = link.getAttribute("href");
+    modal.classList.add("show");
+  });
+
+  document.querySelector(".modal-close")?.addEventListener("click", closeModal);
+  document.querySelector(".modal-overlay")?.addEventListener("click", closeModal);
+
+  function closeModal() {
+    modal.classList.remove("show");
+    iframe.src = "";
+  }
+});
+
 

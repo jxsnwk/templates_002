@@ -72,13 +72,29 @@ https://jxsn-wk.booth.pm/items/7900600
 
 
 # 同梱物
+### templates_002：HTMLテンプレート
+うち、assetsフォルダはシナリオ・テンプレート配布時に同封が【必要】です。
+
 templates_002
-├─ README.txt
-├─ 動作確認用テキスト.txt
-├─ 画面サンプル画像.png
 ├─ テンプレートサンプル.html
+└─ assets
+   ├─ css
+   │  ├─ deco.css
+   │  ├─ layout.css
+   │  └─ parts.css
+   ├─ img
+   └─ js
+      └─ parts.js
+
+
+### tools：シナリオHTML生成ツール
+シナリオ・テンプレート配布時に同封は【不要】です。
+
+tools
+├─ 動作確認用テキスト.txt
 ├─ シナリオHTML生成ツール.html
 ├─ generator
+│  ├─ decorule.html
 │  ├─ js
 │  │  └─ generator.js
 │  └─ css
@@ -93,34 +109,6 @@ templates_002
    │  └─ sample2.png
    └─ js
       └─ parts.js
-
-
-
-
-### 関連ファイル：シナリオHTML生成ツール
-シナリオ・テンプレート配布時に同封は【不要】です。
-- README.txt
-- 動作確認用テキスト.txt
-- 画面サンプル画像.png
-- テンプレートサンプル.html
-- シナリオHTML生成ツール.html
-
-- generator/js/generator.js
-- generator/css/generator.css
-
-
-### 関連ファイル：HTMLテンプレート
-assetsフォルダ内のファイルが該当します。
-シナリオ・テンプレート配布時に同封が【必要】です。
-- assets/css/deco.css
-- assets/css/layout.css
-- assets/css/parts.css
-- assets/img/
-- assets/js/parts.js
-
-以下のファイルは削除してOKです。
-- assets/img/sample.png
-- assets/img/sample2.png
 
 
 
@@ -140,6 +128,7 @@ X(旧Twitter)：　@Jxsn_wk
 # 更新履歴
 2026/01/26 【ver.1.0.0】作成
 2026/01/29 【ver.1.0.1】微調整
+2026/02/03 【ver.1.0.2】装飾ルールまとめ
 
 
 

@@ -89,7 +89,7 @@ h3:before {
 }
 
 h4 {
-  width: 270px;
+  max-width: 270px;
   font-size: 1rem;
   color: #FFF;
   background-color: #1f2933;
@@ -519,6 +519,7 @@ hr {
   アイコン
 ========================================================= */
 .icon {
+  color: #444; /* デフォルト色 */
   display: inline-block;
   width: 18px;
   height: 18px;
