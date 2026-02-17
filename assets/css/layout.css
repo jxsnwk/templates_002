@@ -40,6 +40,12 @@ input::placeholder {
   レイアウト
 ========================================================= */
 /* ---- レイアウト ---- */
+header,
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 main.layout-1col,
 main.layout-2col {
   display: grid;

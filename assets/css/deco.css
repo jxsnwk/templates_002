@@ -349,6 +349,11 @@ hr {
   padding: 20px;
 }
 
+.info-box.box1,
+.info-box.box3 {
+  margin: 0 auto;
+}
+
 .info-box>.box-title {
   padding: 0 0.7rem;
 }
